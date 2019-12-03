@@ -7,12 +7,29 @@ define([
 ], (declare, _WidgetBase, _TemplatedMixin, template) => {
     return declare([_WidgetBase, _TemplatedMixin], {
         templateString: template,
+
+        /* Dojo Attach Points */
         counter: null,
 
+        /* UI State */
+        count: 0,
+
+        /* Lifecycle Methods */
         constructor: function() { },
 
-        onOkClick: function() {
-            this.counter.textContent = parseInt(this.counter.textContent) + 1;
+        startup: function() {
+            this.counter.textContent = this.count;
+        },
+
+        /* Methods */
+        increment: function() {
+            this.count++;
+            this.counter.textContent = this.count;
+        },
+
+        decrement: function() {
+            this.count--;
+            this.counter.textContent = this.count;
         }
     });
 });

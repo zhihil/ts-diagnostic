@@ -1,7 +1,7 @@
 define([
     'dojo/_base/declare'
 ], declare => {
-    const SubModelA = {
+    return declare(null, {
         propertyA: "",
         propertyB: "",
         propertyC: "",
@@ -291,7 +291,5 @@ define([
                 }
             }
         }
-    };
-
-    return declare(null, SubModelA);
+    });
 });

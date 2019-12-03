@@ -1,0 +1,37 @@
+<div>
+  <div
+    class="modal"
+    data-dojo-attach-point="modalNode"
+    style="
+      background-color: rgb(223, 217, 204);
+      height: 16rem;
+      width: 20rem;
+      padding: 2rem;
+      display: flex;
+      flex-direction: column;
+    "
+  >
+
+    <p 
+      data-dojo-attach-point="contentNode"
+      style="
+        flex-grow: 1;
+      "
+    ></p>
+
+    <div>
+      <button 
+        class="modal-cancel" 
+        data-dojo-attach-event="onclick: _onModalCancel">
+        Cancel
+      </button>
+
+      <button 
+        class="modal-confirm" 
+        data-dojo-attach-event="onclick: _onModalConfirm">
+        Confirm
+      </button>
+    </div>
+
+  </div>
+</div>
