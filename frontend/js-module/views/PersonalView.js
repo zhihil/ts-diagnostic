@@ -4,7 +4,7 @@ define([
   'dijit/_TemplatedMixin',
   'dijit/_WidgetsInTemplateMixin',
   'models/ProfileCollectionViewModel',
-  'dojo/text!./ViewTemplateA_hash_.html',
+  'dojo/text!templates/PersonalViewTemplate.html',
   'views/controls/ProfileColumn',
   'views/controls/ComponentB',
   'views/controls/ComponentC',
