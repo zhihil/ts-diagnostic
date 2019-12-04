@@ -1,4 +1,4 @@
 node_modules
-templates/js-module/dijit
-templates/js-module/dojo
-templates/js-module/dojox
+frontend/js-module/dijit
+frontend/js-module/dojo
+frontend/js-module/dojox
