@@ -1,0 +1,18 @@
+<div>
+    <div data-dojo-type="views/controls/ProfileColumn"></div>
+    <div data-dojo-type="views/controls/ComponentB"></div>
+    <div 
+      class="modal"
+      data-dojo-type="views/controls/ComponentC"
+      data-dojo-props="content: 'Hello, World'"></div>
+    <div 
+      data-dojo-type="views/controls/ComponentD"
+      data-dojo-props="listItems: at(this, 'listItems')"></div>
+    Question: <input data-dojo-attach-point="questionInput" type="text">
+    <button 
+      id="submit-question" 
+      data-dojo-attach-event="onclick: submitQuestion">
+      Submit
+    </button>
+    <script type="dojo/require">at: "dojox/mvc/at"</script>
+</div>
