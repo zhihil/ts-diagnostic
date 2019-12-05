@@ -1,6 +1,7 @@
 define([
   'models/ProfileCollectionViewModel',
   'dojo/_base/declare',
+  'dojo/_base/lang',
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
   'dijit/_WidgetsInTemplateMixin',
@@ -12,6 +13,7 @@ define([
 ], (
   ProfileCollectionViewModel,
   declare, 
+  lang,
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin,
@@ -20,20 +22,12 @@ define([
   return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
     templateString: template,
 
-    questionInput: null,
+    /* Model */
+    profileModels: null,
+    selectedModel: null,
 
-    listItems: [
-      {
-        content: 'Hello'
-      },
-      {
-        content: 'World'
-      },
-      {
-        content: 'Everyone'
-      }
-    ],
-    model: null,
+    /* Attach points */
+    profileColumn: null,
 
     constructor() { 
       this.inherited(arguments);
@@ -41,8 +35,16 @@ define([
 
     startup() {
       this.inherited(arguments);
-      this.model = new ProfileCollectionViewModel();
-      console.log(this.model.userProfiles[this.model.selectedProfileId]);
+      this.profileModels = new ProfileCollectionViewModel();
+      this.profileModels.watch('selectedProfileId', lang.hitch(this, this.onSelectedProfileIdChanged));
+    },
+
+    onSelectedProfileIdChanged(_propName, _oldValue, _newValue) {
+      /* When the currently selected profile has changed, update the
+          binding of this view to the newly selected model.
+      */
+     const selectedProfileId = this.profileModels.selectedProfileId;
+     this.set('selectedModel', this.profileModels.userProfiles[selectedProfileId]);
     },
 
     submitQuestion() {

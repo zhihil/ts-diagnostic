@@ -1,9 +1,10 @@
 define([
     'dojo/_base/declare',
+    'dojo/_base/lang',
     'dojo/Stateful',
     'dojo/request',
     'models/ProfileViewModel'
-], (declare, Stateful, request, ProfileViewModel) => {
+], (declare, lang, Stateful, request, ProfileViewModel) => {
     return declare([Stateful], {
         userProfiles: null,
         selectedProfileId: null,
@@ -16,27 +17,31 @@ define([
         },
 
         getUsersData() {
-            this.isFetching = true;
+            this.set('isFetching', true);
             request(this.usersUrl).then(
-                this.getUsersSuccess,
-                this.getUsersFailed
+                lang.hitch(this, this.getUsersSuccess),
+                lang.hitch(this, this.getUsersFailed)
             );
         },
 
         getUsersSuccess(data) {
             const parsedData = JSON.parse(data);
 
-            this.userProfiles = {};
+            this.set('userProfiles', {});
             for (const id in parsedData) {
-                if (this.selectedProfileId === null) this.selectedProfileId = id;
                 this.userProfiles[id] = new ProfileViewModel(parsedData[id]); 
             }
 
-            this.isFetching = false;
+            const keys = Object.keys(parsedData);
+            if (keys.length > 0) {
+                this.set('selectedProfileId', keys[0]);
+            }
+
+            this.set('isFetching', false);
         },
 
         getUsersFailed(_err) {
-            this.isFetching = false;
+            this.set('isFetching', false);
         }
     });
 });
