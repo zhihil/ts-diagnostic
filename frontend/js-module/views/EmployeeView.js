@@ -32,7 +32,9 @@ define([
       }
     ],
 
-    constructor() { },
+    constructor() { 
+      this.inherited(arguments);
+    },
 
     submitQuestion() {
       if (this.questionInput) {

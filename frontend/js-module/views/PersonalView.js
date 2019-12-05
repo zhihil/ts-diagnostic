@@ -35,10 +35,14 @@ define([
     ],
     model: null,
 
-    constructor() { },
+    constructor() { 
+      this.inherited(arguments);
+    },
 
     startup() {
+      this.inherited(arguments);
       this.model = new ProfileCollectionViewModel();
+      console.log(this.model.userProfiles[this.model.selectedProfileId]);
     },
 
     submitQuestion() {

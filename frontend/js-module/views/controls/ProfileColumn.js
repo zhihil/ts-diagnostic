@@ -8,28 +8,30 @@ define([
     return declare([_WidgetBase, _TemplatedMixin], {
         templateString: template,
 
+        /* IPersonalViewModel */
+        model: null,
+
         /* Dojo Attach Points */
-        counter: null,
+        friendsListNode: null,
 
         /* UI State */
-        count: 0,
+        firstName: null,
+        lastName: null,
+        age: null,
+        school: null,
+        occupation: null,
+        city: null,
+        state: null,
+        country: null,
+        address: null,
+        gender: null,
+        birthday: null,
+        hometown: null,
+        phoneNumber: null,
+        status: null,
+        friends: [],
 
         /* Lifecycle Methods */
-        constructor: function() { },
-
-        startup: function() {
-            this.counter.textContent = this.count;
-        },
-
-        /* Methods */
-        increment: function() {
-            this.count++;
-            this.counter.textContent = this.count;
-        },
-
-        decrement: function() {
-            this.count--;
-            this.counter.textContent = this.count;
-        }
+        constructor() { },
     });
 });

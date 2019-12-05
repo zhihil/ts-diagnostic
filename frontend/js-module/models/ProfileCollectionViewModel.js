@@ -6,6 +6,7 @@ define([
 ], (declare, Stateful, request, ProfileViewModel) => {
     return declare([Stateful], {
         userProfiles: null,
+        selectedProfileId: null,
         usersUrl: 'http://localhost:9001/users',
 
         isFetching: false,
@@ -27,6 +28,7 @@ define([
 
             this.userProfiles = {};
             for (const id in parsedData) {
+                if (this.selectedProfileId === null) this.selectedProfileId = id;
                 this.userProfiles[id] = new ProfileViewModel(parsedData[id]); 
             }
 
