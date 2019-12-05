@@ -4,14 +4,14 @@ define([
     "models/EmployeeViewModel",
     "models/PersonalViewModel",
     "models/StudentViewModel",
-    "stores/TreeStore"
+    "stores/FlatEntityStore"
 ], (
     declare, 
     Stateful,
     EmployeeViewModel, 
     PersonalViewModel, 
     StudentViewModel,
-    TreeStore,
+    FlatEntityStore,
 ) => {
     return declare([Stateful], {
         /* Account settings */
@@ -208,7 +208,7 @@ define([
             this.personalViewModel = new PersonalViewModel(this);
             this.studentViewModel = new StudentViewModel(this);
 
-            this.commentsStore = new TreeStore({});
+            this.commentsStore = new FlatEntityStore({});
         },
 
         diff() {
