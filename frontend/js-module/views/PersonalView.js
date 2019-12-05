@@ -8,7 +8,7 @@ define([
   'views/controls/ProfileColumn',
   'views/controls/ComponentB',
   'views/controls/ComponentC',
-  'views/controls/ComponentD',
+  'views/controls/ComponentD'
 ], (
   declare, 
   _WidgetBase, 
