@@ -9,6 +9,7 @@ define([
         conditionA: false,
         conditionB: false,
         conditionC: false,
+        dummyUrl: 'http://localhost:9001/dummy',
 
         constructor: function(options) { 
             if (options && options.isTracking) {
@@ -16,8 +17,8 @@ define([
             }
 
             this.conditionA = this._setConditionA(options);
-            this.conditionB = data && data.length > 0;
-            this.conditionC = index * 10 == options.max;
+            this.conditionB = this.data && this.data.length > 0;
+            this.conditionC = this.index * 10 == options.max;
 
             if (options.conditionA) {
                 this._functionA(options);
@@ -95,7 +96,7 @@ define([
             this.conditionA = options.conditionA && options.conditionB;
         },
         _functionA: function(options) {
-            request("helloworld.txt", {
+            request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000
             }).then(
@@ -108,7 +109,7 @@ define([
             )
         },
         _functionB: function(options) {
-            request("helloworld.txt", {
+            request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000
             }).then(
@@ -121,7 +122,7 @@ define([
             )
         },
         _functionC: function(options) {
-            request("helloworld.txt", {
+            request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000
             }).then(

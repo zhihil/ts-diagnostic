@@ -14,6 +14,10 @@ app.get('/users', (_, res) => {
     });
 });
 
+app.get('/dummy', (_, res) => {
+    res.send("dummy data");
+});
+
 app.listen(port, () => {
     console.log(`Backend server serving on port ${port}`)
 });
