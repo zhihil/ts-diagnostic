@@ -3,8 +3,8 @@ define([
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
   'dijit/_WidgetsInTemplateMixin',
-  'dojo/text!./ViewTemplateA_hash_.html',
-  'views/controls/ComponentA',
+  'dojo/text!templates/EmployeeViewTemplate.html',
+  'views/controls/ProfileColumn',
   'views/controls/ComponentB',
   'views/controls/ComponentC',
   'views/controls/ComponentD'

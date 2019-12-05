@@ -2,7 +2,7 @@ define([
   'dojo/_base/declare',
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
-  'dojo/text!./ComponentCViewTemplate.html'
+  'dojo/text!templates/controls/ComponentCViewTemplate.html'
 ], (declare, _WidgetBase, _TemplatedMixin, template) => {
   return declare([_WidgetBase, _TemplatedMixin], {
     templateString: template,
