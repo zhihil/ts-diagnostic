@@ -118,7 +118,7 @@ define([
             model.watch("SIN", (_propName, _oldValue, newValue) => {
                 this.SIN = newValue;
             });
-        },registerWatches
+        },
 
         initializeNumber: function() {
             return Math.random() * 100;

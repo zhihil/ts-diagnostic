@@ -1,20 +1,20 @@
 define([
+  'models/ProfileCollectionViewModel',
   'dojo/_base/declare',
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
   'dijit/_WidgetsInTemplateMixin',
-  'models/ProfileCollectionViewModel',
   'dojo/text!templates/PersonalViewTemplate.html',
   'views/controls/ProfileColumn',
   'views/controls/ComponentB',
   'views/controls/ComponentC',
   'views/controls/ComponentD'
 ], (
+  ProfileCollectionViewModel,
   declare, 
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin,
-  ProfileCollectionViewModel,
   template
 ) => {
   return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
