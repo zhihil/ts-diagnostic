@@ -59,7 +59,7 @@ define([
      const selectedProfileId = this.profileModels.selectedProfileId;
      this.set('selectedModel', this.profileModels.userProfiles[selectedProfileId]);
 
-     this.personalView.set('selectedModel', this.selectedModel.personalViewModel);
+     this.personalView.set('model', this.selectedModel.personalViewModel);
      this.profileColumn.set('model', this.selectedModel);
     }
   });
