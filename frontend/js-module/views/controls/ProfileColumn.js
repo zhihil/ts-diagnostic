@@ -2,10 +2,12 @@ define([
     "dojo/_base/declare",
     "dijit/_WidgetBase",
     "dijit/_TemplatedMixin",
+    'dijit/_WidgetsInTemplateMixin',
     "dojo/text!templates/controls/ProfileColumnTemplate.html",
+    "views/controls/FieldComponent",
     "dojo/domReady!"
-], (declare, _WidgetBase, _TemplatedMixin, template) => {
-    return declare([_WidgetBase, _TemplatedMixin], {
+], (declare, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, template) => {
+    return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
         templateString: template,
 
         /* IPersonalViewModel */
@@ -13,25 +15,6 @@ define([
 
         /* Dojo Attach Points */
         friendsListNode: null,
-
-        /* UI State */
-        FirstName: null,
-        LastName: null,
-        Age: null,
-        School: null,
-        Occupation: null,
-        City: null,
-        State: null,
-        Country: null,
-        Address: null,
-        Gender: null,
-        Birthday: null,
-        Hometown: null,
-        PhoneNumberCell: null,
-        Status: null,
-        Friends: [],
-
-        count: 0,
 
         /* Lifecycle Methods */
         constructor() { }

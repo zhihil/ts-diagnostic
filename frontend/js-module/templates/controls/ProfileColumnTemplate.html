@@ -1,16 +1,22 @@
 <div>
-    <div class="field-name">Name: ${FirstName} ${LastName}</div>
-    <div class="field-age">Age: ${Age}</div>
-    <div class="field-school">School: ${School}</div>
-    <div class="field-occupation">Occupation: ${Occupation}</div>
-    <div class="field-city">City: ${City}</div>
-    <div class="field-state">State: ${State}</div>
-    <div class="field-country">Country: ${Country}</div>
-    <div class="field-address">Address: ${Address}</div>
-    <div class="field-gender">Gender: ${Gender}</div>
-    <div class="field-birthday">Birthday: ${Birthday}</div>
-    <div class="field-hometown">Hometown: ${Hometown}</div>
-    <div class="field-phoneNumber">Phone Number: ${PhoneNumberCell}</div>
-    <div class="field-status">Status: ${Status}</div>
+    <div 
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'First Name'"
+        data-dojo-attach-point="fieldName">
+    </div>
+    <div data-dojo-attach-point="fieldAge">Age:</div>
+    <div data-dojo-attach-point="fieldSchool">School:</div>
+    <div data-dojo-attach-point="fieldOccupation">Occupation:</div>
+    <div data-dojo-attach-point="fieldCity">City:</div>
+    <div data-dojo-attach-point="fieldState">State:</div>
+    <div data-dojo-attach-point="fieldCountry">Country:</div>
+    <div data-dojo-attach-point="fieldAddress">Address:</div>
+    <div data-dojo-attach-point="fieldGender">Gender:</div>
+    <div data-dojo-attach-point="fieldBirthday">Birthday:</div>
+    <div data-dojo-attach-point="fieldHometown">Hometown:</div>
+    <div data-dojo-attach-point="fieldPhoneNumber">Phone Number:</div>
+    <div data-dojo-attach-point="fieldStatus">Status:</div>
     <ul class="friends-list" data-dojo-attach-point="friendsListNode"></ul>
+
+    <script type="dojo/require">at: "dojox/mvc/at"</script>
 </div>

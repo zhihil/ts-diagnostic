@@ -2,3 +2,4 @@ node_modules
 frontend/js-module/dijit
 frontend/js-module/dojo
 frontend/js-module/dojox
+mocks

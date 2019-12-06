@@ -61,7 +61,7 @@ define([
         getBiography: null,
 
         constructor(model) {
-            this.FirstName = model.FirstName;
+            this.set('FirstName', model.FirstName);
             this.LastName = model.LastName;
             this.Age = model.Age;
             this.School = model.School;

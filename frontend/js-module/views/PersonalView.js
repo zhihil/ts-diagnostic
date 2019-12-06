@@ -29,6 +29,9 @@ define([
     /* Attach points */
     profileColumn: null,
 
+    /* Watch handles */
+    handles: [],
+
     constructor() { 
       this.inherited(arguments);
     },
@@ -36,7 +39,14 @@ define([
     startup() {
       this.inherited(arguments);
       this.profileModels = new ProfileCollectionViewModel();
-      this.profileModels.watch('selectedProfileId', lang.hitch(this, this.onSelectedProfileIdChanged));
+      this.handles.push(
+        this.profileModels.watch('selectedProfileId', lang.hitch(this, this.onSelectedProfileIdChanged))
+      );
+    },
+
+    destroy() {
+      this.handles.forEach(handle => handle.unwatch());
+      this.profileModels.destroy();
     },
 
     onSelectedProfileIdChanged(_propName, _oldValue, _newValue) {
