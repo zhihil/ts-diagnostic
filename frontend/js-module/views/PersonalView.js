@@ -34,14 +34,16 @@ define([
 
     constructor() { 
       this.inherited(arguments);
+      this.profileModels = new ProfileCollectionViewModel();
+
+      this.handles.push(
+        this.profileModels.watch('selectedProfileId', lang.hitch(this, this.onSelectedProfileIdChanged))
+      );
     },
 
     startup() {
       this.inherited(arguments);
-      this.profileModels = new ProfileCollectionViewModel();
-      this.handles.push(
-        this.profileModels.watch('selectedProfileId', lang.hitch(this, this.onSelectedProfileIdChanged))
-      );
+      this.profileModels.initialize();
     },
 
     destroy() {
@@ -55,6 +57,7 @@ define([
       */
      const selectedProfileId = this.profileModels.selectedProfileId;
      this.set('selectedModel', this.profileModels.userProfiles[selectedProfileId]);
+     this.profileColumn.reactToModel();
     },
 
     submitQuestion() {

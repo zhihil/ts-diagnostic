@@ -12,13 +12,15 @@ define([
 
         isFetching: false,
 
-        constructor() {
-            this.getUsersData();
+        constructor() {},
+
+        initialize() { 
+            return this.getUsersData();
         },
 
         getUsersData() {
             this.set('isFetching', true);
-            request(this.usersUrl).then(
+            return request(this.usersUrl).then(
                 lang.hitch(this, this.getUsersSuccess),
                 lang.hitch(this, this.getUsersFailed)
             );
