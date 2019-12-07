@@ -1,0 +1,30 @@
+{
+  "name": "ts-diagnostic",
+  "version": "1.0.0",
+  "description": "- [X] Implement dropdown to switch between Personal, Employee, and Student views - [X] Implement dropdown to switch between different users. - [ ] Implement a comments view to display comments associated with the user.",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dojox": "^1.16.0",
+    "dijit": "^1.16.0",
+    "express": "^4.17.1",
+    "dojo": "^1.16.0",
+    "typescript": "^3.3.1"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "rm -rf ./frontend/static; tsc --diagnostics; cp -R ./src/js-module/templates ./frontend/static/templates; ./scripts/get-dojo.sh; mv dojo frontend/static; mv dijit frontend/static; mv dojox frontend/static; cp src/js-module/index.html frontend/static/index.html"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/zhihil/ts-diagnostic.git"
+  },
+  "author": "Zhiheng Lu",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/zhihil/ts-diagnostic/issues"
+  },
+  "homepage": "https://github.com/zhihil/ts-diagnostic#readme"
+}
