@@ -46,6 +46,17 @@ define([
 
         getUsersFailed(_err) {
             this.set('isFetching', false);
+        },
+
+        changeSelectedUser(targetId) {
+            const recordIds = Object.keys(this.userProfiles);
+            const userIndex = recordIds.findIndex(id => this.userProfiles[id].ProfileId === targetId);
+
+            if (userIndex === -1) {
+                throw Error("Attempted to change to a non-existent user");
+            }
+
+            this.set('selectedProfileId', recordIds[userIndex]);
         }
     });
 });
