@@ -3,3 +3,4 @@ dijit
 dojo
 dojox
 frontend/static
+logs/*
