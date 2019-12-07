@@ -4,10 +4,7 @@ define([
   'dijit/_TemplatedMixin',
   'dijit/_WidgetsInTemplateMixin',
   'dojo/text!templates/PersonalViewTemplate.html',
-  'views/controls/ProfileColumn',
-  'views/controls/ComponentB',
-  'views/controls/ComponentC',
-  'views/controls/ComponentD'
+  'views/controls/ProfileColumn'
 ], (
   declare, 
   _WidgetBase, 
