@@ -1,0 +1,50 @@
+{
+  "12a304ff-0f5c-4e7e-a2db-392bb19507d1": {
+    "textContent": "Amazing friend!",
+    "createdTimestamp": "11-12-2023",
+    "creatorId": 1001,
+    "targetUserId": 1002 
+  },
+  "9137958f-6f03-4a4a-949e-cc2aacc0c305": {
+    "textContent": "An excellent writer",
+    "createdTimestamp": "01-04-2023",
+    "creatorId": 1003,
+    "targetUserId": 1002 
+  },
+  "1adec540-60d6-4583-93dd-30036ca376bf": {
+    "textContent": "Could use a bit of salt.",
+    "createdTimestamp": "14-09-2023",
+    "creatorId": 1004,
+    "targetUserId": 1002 
+  },
+  "d296abdd-c78d-4b27-97ce-9a246d7eaf68": {
+    "textContent": "For sale. Never worn.",
+    "createdTimestamp": "27-08-2022",
+    "creatorId": 1002,
+    "targetUserId": 1003 
+  },
+  "70cb1579-03ea-45c3-aeef-a4ae0f868802": {
+    "textContent": "Goes great with fries",
+    "createdTimestamp": "22-11-2018",
+    "creatorId": 1004,
+    "targetUserId": 1003 
+  },
+  "24ec4fbc-cf18-45f5-ac0f-11d73c9a2b95": {
+    "textContent": "Not quite my tempo.",
+    "createdTimestamp": "22-11-2008",
+    "creatorId": 1001,
+    "targetUserId": 1004
+  },
+  "e45e3a38-9634-4033-9057-6ba1f21a8165": {
+    "textContent": "Bring down the government, they don't, they don't speak for us",
+    "createdTimestamp": "22-11-2050",
+    "creatorId": 1002,
+    "targetUserId": 1004
+  },
+  "f8e759eb-06df-4222-ad50-f9dea8fa6394": {
+    "textContent": "I'll take a quiet life than a handshake of carbon monoxide",
+    "createdTimestamp": "22-11-2018",
+    "creatorId": 1004,
+    "targetUserId": 1005
+  }
+}
