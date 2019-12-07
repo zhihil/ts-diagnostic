@@ -4,7 +4,8 @@
     "moduleResolution": "node",
     "baseUrl": "./",
     "noEmitOnError": true,
-    "outDir": "frontend/static"
+    "outDir": "frontend/static",
+    "target": "ES3"
   },
   "include": ["./src/ts-module/**/*.ts", "./src/ts-module/**/*.tsx"],
   "exclude": ["node_modules"]

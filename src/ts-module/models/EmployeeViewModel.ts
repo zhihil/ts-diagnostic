@@ -129,8 +129,9 @@ define([
             });
         },
 
-        initializeNumber: function() {
-            return Math.random() * 100;
+        initializeNumber: function(obj = { a: 12, b: 13 }) {
+            const { a, b } = obj;
+            return Math.random() * 100 + a * b;
         },
 
         initializeString: function() {
