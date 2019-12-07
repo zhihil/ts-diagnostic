@@ -1,0 +1,11 @@
+{
+  "compilerOptions": {
+    "module": "AMD",
+    "moduleResolution": "node",
+    "baseUrl": "./",
+    "noEmitOnError": true,
+    "outDir": "frontend/static"
+  },
+  "include": ["**/*.ts", "**/*.tsx"],
+  "exclude": ["node_modules"]
+}
