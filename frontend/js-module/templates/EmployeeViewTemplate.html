@@ -1,18 +1,48 @@
 <div>
-    <div data-dojo-type="views/controls/ProfileColumn"></div>
-    <div data-dojo-type="views/controls/ComponentB"></div>
     <div 
-      class="modal"
-      data-dojo-type="views/controls/ComponentC"
-      data-dojo-props="content: 'Hello, World'"></div>
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'Name'"
+        data-dojo-attach-point="fieldName">
+    </div>
     <div 
-      data-dojo-type="views/controls/ComponentD"
-      data-dojo-props="listItems: at(this, 'listItems')"></div>
-    Question: <input data-dojo-attach-point="questionInput" type="text">
-    <button 
-      id="submit-question" 
-      data-dojo-attach-event="onclick: submitQuestion">
-      Submit
-    </button>
-    <script type="dojo/require">at: "dojox/mvc/at"</script>
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'Age'"
+        data-dojo-attach-point="fieldAge">
+    </div>
+    <div 
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'Occupation'"
+        data-dojo-attach-point="fieldOccupation">
+    </div>
+    <div 
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'WorkAddress'"
+        data-dojo-attach-point="fieldWorkAddress">
+    </div>
+    <div 
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'Gender'"
+        data-dojo-attach-point="fieldGender">
+    </div>
+    <div 
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'Phone Number'"
+        data-dojo-attach-point="fieldPhoneNumber">
+    </div>
+    <div 
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'Phone Number, Business 1'"
+        data-dojo-attach-point="fieldPhoneNumberBusiness1">
+    </div>
+    <div 
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'Phone Number, Business 2'"
+        data-dojo-attach-point="fieldPhoneNumberBusiness2">
+    </div>
+    <div 
+        data-dojo-type="views/controls/FieldComponent"
+        data-dojo-props="fieldLabel: 'SIN'"
+        data-dojo-attach-point="fieldSIN">
+    </div>
 </div>
+    

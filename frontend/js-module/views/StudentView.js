@@ -5,9 +5,6 @@ define([
   'dijit/_WidgetsInTemplateMixin',
   'dojo/text!templates/StudentViewTemplate.html',
   'views/controls/ProfileColumn',
-  'views/controls/ComponentB',
-  'views/controls/ComponentC',
-  'views/controls/ComponentD'
 ], (
   declare, 
   _WidgetBase, 
@@ -18,34 +15,42 @@ define([
   return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
     templateString: template,
 
-    questionInput: null,
-
-    listItems: [
-      {
-        content: 'Hello'
-      },
-      {
-        content: 'World'
-      },
-      {
-        content: 'Everyone'
-      }
-    ],
+    /* Dojo attach points */
+    fieldName: null,
+    fieldAge: null,
+    fieldOccupation: null,
+    fieldCity: null,
+    fieldState: null,
+    fieldCountry: null,
+    fieldAddress: null,
+    fieldWorkAddress: null,
+    fieldGender: null,
+    fieldBirthday: null,
+    fieldHometown: null,
+    fieldPhoneNumber: null,
+    fieldPhoneNumberBusiness1: null,
+    fieldPhoneNumberBusiness2: null,
+    fieldStatus: null,
+    fieldSIN: null,
+    friendsListNode: null,
+    coursesListNode: null,
 
     constructor() { 
       this.inherited(arguments);
     },
 
-    submitQuestion() {
-      if (this.questionInput) {
-        this.set('listItems', [
-          ...this.get('listItems'),
-          {
-            content: this.questionInput.value
-          }
-        ]);
-        this.questionInput.value = "";
-      }
+    _setModelAttr(value) {
+      this.model = value;
+      if (value) this.reactToModel();
+    },
+
+    reactToModel() {
+      this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
+      this.fieldAge.set('value', this.model.Age);
+      this.fieldSchool.set('value', this.model.School);
+      this.fieldGender.set('value', this.model.Gender);
+      this.fieldPhoneNumber.set('value', this.model.PhoneNumberCell);
+      this.fieldSIN.set('value', this.model.SIN);
     }
   });
 });
