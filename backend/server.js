@@ -27,7 +27,7 @@ app.use(bodyParser.json());
 
 /* GET all user infomration */
 app.get('/users', (_, res) => {
-    readFile('./users.json', 'utf8', (err, data) => {
+    readFile('./db/users.json', 'utf8', (err, data) => {
         if (err) throw err;
         res.send(JSON.parse(data));
     });
@@ -35,7 +35,7 @@ app.get('/users', (_, res) => {
 
 /* GET the comments posted to a given target user */
 app.get('/comments', (req, res) => {
-    readFile('./comments.json', 'utf8', (err, data) => {
+    readFile('./db/comments.json', 'utf8', (err, data) => {
         if (err) throw err;
         const filteredData = executeQuery(
             JSON.parse(data), 
