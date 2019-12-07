@@ -2,16 +2,21 @@ define([
   'models/ProfileCollectionViewModel',
   'dojo/_base/declare',
   'dojo/_base/lang',
+  'dojo/dom-style',
+  'dojo/on',
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
   'dijit/_WidgetsInTemplateMixin',
   'dojo/text!templates/ProfileViewTemplate.html',
   'views/controls/ProfileColumn',
-  'views/controls/ProfileSelect'
+  'views/controls/ProfileSelect',
+  'dijit/form/Button'
 ], (
   ProfileCollectionViewModel,
   declare, 
   lang,
+  domStyle,
+  on,
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin,
@@ -30,13 +35,21 @@ define([
     studentView: null,
     profileColumn: null,
     profileSelect: null,
+    currentView: null,
+
+    showPersonalBtn: null,
+    showEmployeeBtn: null,
+    showStudentBtn: null,
 
     /* Watch handles */
     handles: [],
 
+    /* UI State */
+    currentView: null,
+
     /* Function references to lang.hitch'd methods */
     onSelectedProfileChanged: null,
-
+  
     constructor() { 
       this.inherited(arguments);
       this.profileModels = new ProfileCollectionViewModel();
@@ -49,7 +62,7 @@ define([
         const ids = Object.keys(this.profileModels.userProfiles);
         this.profileSelect.set('values', 
           ids.map(id => {
-            const model =this.profileModels.userProfiles[id];
+            const model = this.profileModels.userProfiles[id];
             return ({
               value: model.ProfileId,
               label: `${model.FirstName} ${model.LastName}`
@@ -63,6 +76,22 @@ define([
 
     startup() {
       this.inherited(arguments);
+
+      domStyle.set(this.personalView.domNode, 'display', 'none');
+      domStyle.set(this.employeeView.domNode, 'display', 'none');
+      domStyle.set(this.studentView.domNode, 'display', 'none');
+
+      this.set('currentView', 'personal');
+
+      on(this.showPersonalBtn.domNode, 'click', () => {
+        this.set('currentView', 'personal');
+      });
+      on(this.showEmployeeBtn.domNode, 'click', () => {
+        this.set('currentView', 'employee');
+      });
+      on(this.showStudentBtn.domNode, 'click', () => {
+        this.set('currentView', 'student');
+      });
     },
 
     destroy() {
@@ -85,6 +114,25 @@ define([
 
     _onSelectedProfileChanged(newProfile) {
       this.profileModels.changeSelectedUser(newProfile);
+    },
+
+    _setCurrentViewAttr(newVal) {
+      if (this.currentView) {
+        domStyle.set(this.currentView.domNode, 'display', 'none');
+      }
+  
+      if (newVal === 'personal')  {
+        domStyle.set(this.personalView.domNode, 'display', 'block');
+        this.currentView = this.personalView;
+      } else if (newVal === 'employee')  {
+        domStyle.set(this.employeeView.domNode, 'display', 'block');
+        this.currentView = this.employeeView;
+      } else if (newVal === 'student')  {
+        domStyle.set(this.studentView.domNode, 'display', 'block');
+        this.currentView = this.studentView;
+      } else {
+        throw Error('Invalid view setting');
+      }
     }
   });
 });
