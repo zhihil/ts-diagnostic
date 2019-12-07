@@ -1,18 +1,25 @@
 <div>
     <div 
+      data-dojo-type="views/controls/ProfileSelect"
+      data-dojo-attach-point="profileSelect"
+      data-dojo-props="
+        onChanged: this.onSelectedProfileChanged
+      ">
+    </div>
+    <div 
         data-dojo-type="views/controls/ProfileColumn"
         data-dojo-attach-point="profileColumn">
     </div>
     <div 
-      data-dojo-type="./views/PersonalView.js"
+      data-dojo-type="views/PersonalView.js"
       data-dojo-attach-point="personalView">
     </div>
     <div 
-      data-dojo-type="./views/EmployeeView.js"
+      data-dojo-type="views/EmployeeView.js"
       data-dojo-attach-point="employeeView">
     </div>
     <div 
-      data-dojo-type="./views/StudentView.js"
+      data-dojo-type="views/StudentView.js"
       data-dojo-attach-point="studentView">
     </div>
 </div>

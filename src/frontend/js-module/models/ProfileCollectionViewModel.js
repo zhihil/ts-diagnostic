@@ -12,9 +12,7 @@ define([
 
         isFetching: false,
 
-        constructor() {
-            this.getUsersData();
-        },
+        constructor() { },
 
         refreshData() { 
             return this.getUsersData();

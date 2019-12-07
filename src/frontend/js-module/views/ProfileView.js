@@ -6,7 +6,8 @@ define([
   'dijit/_TemplatedMixin',
   'dijit/_WidgetsInTemplateMixin',
   'dojo/text!templates/ProfileViewTemplate.html',
-  'views/controls/ProfileColumn'
+  'views/controls/ProfileColumn',
+  'views/controls/ProfileSelect'
 ], (
   ProfileCollectionViewModel,
   declare, 
@@ -28,9 +29,13 @@ define([
     employeeView: null,
     studentView: null,
     profileColumn: null,
+    profileSelect: null,
 
     /* Watch handles */
     handles: [],
+
+    /* Function references to lang.hitch'd methods */
+    onSelectedProfileChanged: null,
 
     constructor() { 
       this.inherited(arguments);
@@ -39,6 +44,21 @@ define([
       this.handles.push(
         this.profileModels.watch('selectedProfileId', lang.hitch(this, this.onSelectedProfileIdChanged))
       );
+
+      this.profileModels.getUsersData().then(() => {
+        const ids = Object.keys(this.profileModels.userProfiles);
+        this.profileSelect.set('values', 
+          ids.map(id => {
+            const model =this.profileModels.userProfiles[id];
+            return ({
+              value: model.ProfileId,
+              label: `${model.FirstName} ${model.LastName}`
+            })
+          })
+        );
+      });
+
+      this.onSelectedProfileChanged = lang.hitch(this, this._onSelectedProfileChanged);
     },
 
     startup() {
@@ -61,6 +81,10 @@ define([
      this.employeeView.set('model', this.selectedModel.employeeViewModel);
      this.studentView.set('model', this.selectedModel.studentViewModel);
      this.profileColumn.set('model', this.selectedModel);
+    },
+
+    _onSelectedProfileChanged(newProfile) {
+      this.profileModels.changeSelectedUser(newProfile);
     }
   });
 });
