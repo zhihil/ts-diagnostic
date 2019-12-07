@@ -15,7 +15,7 @@
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "rm -rf ./frontend/static/src; tsc"
+    "build": "rm -rf ./frontend/static/src; tsc --diagnostics; cp -R ./src/js-module/templates ./frontend/static/src/templates"
   },
   "repository": {
     "type": "git",

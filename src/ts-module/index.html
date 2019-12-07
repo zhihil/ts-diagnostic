@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>TS Diagnostics Test Project</title>
+    </head>
+    <body>
+        <script src="dojo/dojo.js"></script>
+        <script src="dijit/dijit.js"></script>
+
+        <div data-dojo-type="./views/ProfileView.js"></div>
+
+        <script>
+            require(["dojo/parser", "dojo/domReady!"], parser => {
+                parser.parse();
+            });
+        </script>
+    </body>
+</html>

@@ -6,6 +6,6 @@
     "noEmitOnError": true,
     "outDir": "frontend/static/src"
   },
-  "include": ["**/*.ts", "**/*.tsx"],
+  "include": ["./src/ts-module/**/*.ts", "./src/ts-module/**/*.tsx"],
   "exclude": ["node_modules"]
 }
