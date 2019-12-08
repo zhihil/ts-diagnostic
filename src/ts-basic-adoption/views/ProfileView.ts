@@ -33,28 +33,29 @@ define([
     get: (prop: string) => any;
 
     /* Model */
-    profileModels: IProfileCollectionViewModel = null;
+    readonly profileModels: IProfileCollectionViewModel = null;
     selectedModel: IProfileViewModel = null;
 
     /* Attach points */
-    personalView: IPersonalView = null;
-    employeeView: IEmployeeView = null;
-    studentView: IStudentView = null;
-    profileColumn: IProfileColumn = null;
-    profileSelect: IProfileSelect = null;
+    readonly personalView: IPersonalView = null;
+    readonly employeeView: IEmployeeView = null;
+    readonly studentView: IStudentView = null;
+    readonly profileColumn: IProfileColumn = null;
+    readonly profileSelect: IProfileSelect = null;
+    readonly domNode: HTMLDivElement = null;
+    readonly showPersonalBtn: any = null;
+    readonly showEmployeeBtn: any = null;
+    readonly showStudentBtn: any = null;
+
+    /* UI State */
     currentViewType: viewType = null;
     currentView: IPersonalView | IEmployeeView | IStudentView = null;
-    domNode: HTMLDivElement = null;
-
-    showPersonalBtn: any = null;
-    showEmployeeBtn: any = null;
-    showStudentBtn: any = null;
 
     /* Watch handles */
-    handles: any[] = [];
+    readonly handles: any[] = [];
 
     /* Function references to lang.hitch'd methods */
-    onSelectedProfileChanged: (newProfileId: string) => void = null;
+    readonly onSelectedProfileChanged: (newProfileId: string) => void = null;
   
     constructor() {
       this.profileModels = new ProfileCollectionViewModel();

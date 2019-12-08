@@ -16,10 +16,10 @@
 - [X] Explicit primitive typing
 - [X] Enums
 - [X] Explicitly type functions parameters
-- [ ] Avoid the use of `any` 
+- [X] Avoid the use of `any` 
 ### 3 - Interfaces
-- [ ] Interfaces
-- [ ] Option bags (all properties all optional)
+- [X] Interfaces
+- [X] Option bags (all properties all optional)
 - [ ] Readonly properties
 - [ ] ReadonlyArray - Used for tracking collection.
 - [ ] Indexable types

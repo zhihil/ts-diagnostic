@@ -16,15 +16,15 @@ define([
   Select: any
 ) => {
   class ProfileSelect {
-    templateString = template;
+    readonly templateString = template;
 
     /* Dojo attach points */
-    selectContainer: HTMLDivElement = null;
+    readonly selectContainer: HTMLDivElement = null;
     selectWidget: typeof Select = null; 
 
     /* Dojo props */
     values: DojoSelectValue[] = [];
-    onChanged: (newVal: number) => void = () => {};
+    readonly onChanged: (newVal: number) => void = () => {};
 
     _setValuesAttr(newValues: DojoSelectValue[]) {
       this.values = newValues;

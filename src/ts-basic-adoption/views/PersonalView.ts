@@ -13,7 +13,7 @@ define([
   template: string
 ) => {
   class PersonalView implements IPersonalView {
-    templateString = template;
+    readonly templateString = template;
 
     /* Mixin implementation methods */
     inherited: (args: IArguments) => any;    
@@ -24,24 +24,24 @@ define([
     model: IPersonalViewModel = null;
 
     /* Attach points */
-    fieldName: IFieldComponent = null;
-    fieldAge: IFieldComponent = null;
-    fieldSchool: IFieldComponent = null;
-    fieldOccupation: IFieldComponent = null;
-    fieldCity: IFieldComponent = null;
-    fieldState: IFieldComponent = null;
-    fieldCountry: IFieldComponent = null;
-    fieldAddress: IFieldComponent = null;
-    fieldGender: IFieldComponent = null;
-    fieldBirthday: IFieldComponent = null;
-    fieldHometown: IFieldComponent = null;
-    fieldPhoneNumber: IFieldComponent = null;
-    fieldStatus: IFieldComponent = null;
-    friendsListNode: IFieldComponent = null;
-    domNode: HTMLDivElement = null;
+    readonly fieldName: IFieldComponent = null;
+    readonly fieldAge: IFieldComponent = null;
+    readonly fieldSchool: IFieldComponent = null;
+    readonly fieldOccupation: IFieldComponent = null;
+    readonly fieldCity: IFieldComponent = null;
+    readonly fieldState: IFieldComponent = null;
+    readonly fieldCountry: IFieldComponent = null;
+    readonly fieldAddress: IFieldComponent = null;
+    readonly fieldGender: IFieldComponent = null;
+    readonly fieldBirthday: IFieldComponent = null;
+    readonly fieldHometown: IFieldComponent = null;
+    readonly fieldPhoneNumber: IFieldComponent = null;
+    readonly fieldStatus: IFieldComponent = null;
+    readonly friendsListNode: IFieldComponent = null;
+    readonly domNode: HTMLDivElement = null;
 
     /* Watch handles */
-    handles: any[] = [];
+    readonly handles: any[] = [];
 
     /* Lifecycle Methods */
     constructor() {}

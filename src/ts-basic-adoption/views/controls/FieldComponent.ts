@@ -10,13 +10,13 @@ define([
   template: string
 ) => {
   class FieldComponent {
-    templateString = template;
+    readonly templateString = template;
 
     /* Label name */
-    fieldLabel = "";
+    readonly fieldLabel = "";
 
     /* Dojo attach points */
-    fieldNode: HTMLSpanElement = null;
+    readonly fieldNode: HTMLSpanElement = null;
 
     /* Binding for the field content */
     value: string = null;

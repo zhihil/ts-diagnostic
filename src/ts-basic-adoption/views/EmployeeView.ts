@@ -13,24 +13,24 @@ define([
   template: string
 ) => {
   class EmployeeView {
-    templateString = template;
+    readonly templateString = template;
 
     /* Model */
     model: IEmployeeViewModel = null;
 
     /* Attach points */
-    fieldName: IFieldComponent = null;
-    fieldAge: IFieldComponent = null;
-    fieldOccupation: IFieldComponent = null;
-    fieldWorkAddress: IFieldComponent = null;
-    fieldGender: IFieldComponent = null;
-    fieldPhoneNumber: IFieldComponent = null;
-    fieldPhoneNumberBusiness1: IFieldComponent = null;
-    fieldPhoneNumberBusiness2: IFieldComponent = null;
-    fieldSIN: IFieldComponent = null;
+    readonly fieldName: IFieldComponent = null;
+    readonly fieldAge: IFieldComponent = null;
+    readonly fieldOccupation: IFieldComponent = null;
+    readonly fieldWorkAddress: IFieldComponent = null;
+    readonly fieldGender: IFieldComponent = null;
+    readonly fieldPhoneNumber: IFieldComponent = null;
+    readonly fieldPhoneNumberBusiness1: IFieldComponent = null;
+    readonly fieldPhoneNumberBusiness2: IFieldComponent = null;
+    readonly fieldSIN: IFieldComponent = null;
 
     /* Watch handles */
-    handles: any[] = [];
+    readonly handles: any[] = [];
 
     /* Lifecycle Methods */
     constructor() {}

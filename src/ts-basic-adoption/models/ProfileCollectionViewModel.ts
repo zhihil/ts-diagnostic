@@ -17,9 +17,9 @@ define([
         get: (prop: string) => any;
         watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
-        userProfiles: Map<IProfileViewModel> = null;
+        readonly userProfiles: Map<IProfileViewModel> = null;
         selectedProfileId: string = null;
-        usersUrl: string = 'http://localhost:9001/users';
+        readonly usersUrl: string = 'http://localhost:9001/users';
 
         isFetching: false;
 

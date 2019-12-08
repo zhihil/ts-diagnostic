@@ -8,13 +8,13 @@ define([
         conditionA = false;
         conditionB = false;
         conditionC = false;
-        dummyUrl = 'http://localhost:9001/dummy'; 
+        readonly dummyUrl = 'http://localhost:9001/dummy'; 
 
         data: FlatEntity<T>[] = null;
-        index: number = null;
-        queryEngine = SimpleQueryEngine;
+        readonly index: number = null;
+        readonly queryEngine = SimpleQueryEngine;
 
-        idProperty =  "id";
+        readonly idProperty =  "id";
 
         constructor(options?: IFlatEntityStoreCtorOptions<T>) { 
             if (!options) return;

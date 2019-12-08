@@ -13,7 +13,7 @@ define([
   template: string
 ) => {
   class StudentView implements IStudentView {
-    templateString = template;
+    readonly templateString = template;
 
     /* Mixin implementation methods */ 
     set: (prop: string, value: any) => void;
@@ -24,26 +24,26 @@ define([
     model: IStudentViewModel = null;
 
     /* Dojo attach points */
-    fieldName: IFieldComponent = null;
-    fieldAge: IFieldComponent = null;
-    fieldSchool: IFieldComponent = null;
-    fieldOccupation: IFieldComponent = null;
-    fieldCity: IFieldComponent = null;
-    fieldState: IFieldComponent = null;
-    fieldCountry: IFieldComponent = null;
-    fieldAddress: IFieldComponent = null;
-    fieldWorkAddress: IFieldComponent = null;
-    fieldGender: IFieldComponent = null;
-    fieldBirthday: IFieldComponent = null;
-    fieldHometown: IFieldComponent = null;
-    fieldPhoneNumber: IFieldComponent = null;
-    fieldPhoneNumberBusiness1: IFieldComponent = null;
-    fieldPhoneNumberBusiness2: IFieldComponent = null;
-    fieldStatus: IFieldComponent = null;
-    fieldSIN: IFieldComponent = null;
-    friendsListNode: IFieldComponent = null;
-    coursesListNode: IFieldComponent = null;
-    domNode: HTMLDivElement = null;
+    readonly fieldName: IFieldComponent = null;
+    readonly fieldAge: IFieldComponent = null;
+    readonly fieldSchool: IFieldComponent = null;
+    readonly fieldOccupation: IFieldComponent = null;
+    readonly fieldCity: IFieldComponent = null;
+    readonly fieldState: IFieldComponent = null;
+    readonly fieldCountry: IFieldComponent = null;
+    readonly fieldAddress: IFieldComponent = null;
+    readonly fieldWorkAddress: IFieldComponent = null;
+    readonly fieldGender: IFieldComponent = null;
+    readonly fieldBirthday: IFieldComponent = null;
+    readonly fieldHometown: IFieldComponent = null;
+    readonly fieldPhoneNumber: IFieldComponent = null;
+    readonly fieldPhoneNumberBusiness1: IFieldComponent = null;
+    readonly fieldPhoneNumberBusiness2: IFieldComponent = null;
+    readonly fieldStatus: IFieldComponent = null;
+    readonly fieldSIN: IFieldComponent = null;
+    readonly friendsListNode: IFieldComponent = null;
+    readonly coursesListNode: IFieldComponent = null;
+    readonly domNode: HTMLDivElement = null;
 
     _setModelAttr(value: IStudentViewModel) {
       this.model = value;

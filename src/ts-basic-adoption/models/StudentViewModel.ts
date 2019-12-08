@@ -32,24 +32,24 @@ define([
         propertyC3: User = null;
 
         /* Object type B */
-        propertyA4: Profile = null;
-        propertyB4: Profile = null;
-        propertyC4: Profile = null;
+        readonly propertyA4: Profile = null;
+        readonly propertyB4: Profile = null;
+        readonly propertyC4: Profile = null;
 
         /* Object type C */
-        propertyA5: Address = null;
-        propertyB5: Address = null;
-        propertyC5: Address = null;
+        readonly propertyA5: Address = null;
+        readonly propertyB5: Address = null;
+        readonly propertyC5: Address = null;
     
         /* Constants */
-        alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
+        readonly alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
             'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x',
             'y', 'z'];
-        firstNames = ["Andrew", "Thomas", "Morgan", "Alex", "Sarah", "Velma"];
-        lastNames = ["Wellington", "Smith", "Thurston", "Armstrong", "Samson", "Goldberg"];
+        readonly firstNames = ["Andrew", "Thomas", "Morgan", "Alex", "Sarah", "Velma"];
+        readonly lastNames = ["Wellington", "Smith", "Thurston", "Armstrong", "Samson", "Goldberg"];
 
         /* Methods derived from the parent model */
-        getEducationalBio: () => EducationalBiography = null;
+        readonly getEducationalBio: () => EducationalBiography = null;
 
         constructor(model: IProfileViewModel) {
             this.FirstName = model.FirstName

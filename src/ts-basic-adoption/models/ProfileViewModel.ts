@@ -89,24 +89,24 @@ define([
         propertyH3: User = null;
 
         /* Object type B */
-        propertyA4: Profile = null;
-        propertyB4: Profile = null;
-        propertyC4: Profile = null;
-        propertyD4: Profile = null;
-        propertyE4: Profile = null;
-        propertyF4: Profile = null;
-        propertyG4: Profile = null;
-        propertyH4: Profile = null;
+        readonly propertyA4: Profile = null;
+        readonly propertyB4: Profile = null;
+        readonly propertyC4: Profile = null;
+        readonly propertyD4: Profile = null;
+        readonly propertyE4: Profile = null;
+        readonly propertyF4: Profile = null;
+        readonly propertyG4: Profile = null;
+        readonly propertyH4: Profile = null;
 
         /* Object type C */
-        propertyA5: Address = null;
-        propertyB5: Address = null;
-        propertyC5: Address = null;
-        propertyD5: Address = null;
-        propertyE5: Address = null;
-        propertyF5: Address = null;
-        propertyG5: Address = null;
-        propertyH5: Address = null;
+        readonly propertyA5: Address = null;
+        readonly propertyB5: Address = null;
+        readonly propertyC5: Address = null;
+        readonly propertyD5: Address = null;
+        readonly propertyE5: Address = null;
+        readonly propertyF5: Address = null;
+        readonly propertyG5: Address = null;
+        readonly propertyH5: Address = null;
 
         /* Sub View Models */
         employeeViewModel: IEmployeeViewModel = null;
