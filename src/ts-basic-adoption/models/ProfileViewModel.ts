@@ -6,14 +6,19 @@ define([
     "models/StudentViewModel",
     "stores/FlatEntityStore"
 ], (
-    declare, 
-    Stateful,
-    EmployeeViewModel, 
-    PersonalViewModel, 
-    StudentViewModel,
-    FlatEntityStore,
+    declare: Function, 
+    Stateful: object,
+    EmployeeViewModel: IConstructableEmployeeViewModel, 
+    PersonalViewModel: IConstructablePersonalViewModel, 
+    StudentViewModel: IConstructableStudentViewModel,
+    FlatEntityStore: IFlatEntityStore<CommentMetadata>,
 ) => {
-    class ProfileViewModel {
+    class ProfileViewModel implements IProfileViewModel {
+        /* Mixin implementation methods */  
+        set: (prop: string, value: any) => void;
+        get: (prop: string) => any;
+        watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+
         /* Account settings */
         ProfileId: number = null;
         AccountCreated = "";
@@ -38,9 +43,9 @@ define([
         PhoneNumberCell =  "";
         PhoneNumberBusiness1 =  "";
         PhoneNumberBusiness2 =  "";
-        Friends =  [];
+        Friends: number[] =  [];
         Status =  "";
-        Courses =  [];
+        Courses: string[] =  [];
         SIN =  "";
 
         /* Model state */
@@ -104,12 +109,12 @@ define([
         propertyH5: Address = null;
 
         /* Sub View Models */
-        employeeViewModel = null;
-        studentViewModel = null;
-        personalViewModel = null;
+        employeeViewModel: IEmployeeViewModel = null;
+        studentViewModel: IStudentViewModel = null;
+        personalViewModel: IPersonalViewModel = null;
 
         /* Store */
-        commentsStore = null;
+        commentsStore: IFlatEntityStore<CommentMetadata> = null;
 
         /* Constants */
         alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l',
@@ -117,8 +122,14 @@ define([
                     'y', 'z'];
         firstNames = ["Andrew", "Thomas", "Morgan", "Alex", "Sarah", "Velma"];
         lastNames = ["Wellington", "Smith", "Thurston", "Armstrong", "Samson", "Goldberg"];
+        diffProperties: (keyof this)[] = [
+            'ProfileId', 'AccountCreated', 'Verified', 'Confirmed', 'Premium',
+            'FirstName', 'LastName', 'Age', 'School', 'Occupation', 'City', 'State', 'Country',
+            'Address', 'WorkAddress', 'Gender', 'Birthday', 'Hometown', 'PhoneNumberCell',
+            'PhoneNumberBusiness1', 'PhoneNumberBusiness2', 'Friends', 'Status', 'Courses', 'SIN'
+        ];
 
-        constructor(model /* ProfileModel */) {
+        constructor(model: IProfileModel /* ProfileModel */) {
             /* Account settings */
             this.ProfileId = model.ProfileId;
             this.AccountCreated = model.AccountCreated;
@@ -212,23 +223,9 @@ define([
         }
 
         diff() {
-            const diffObj = {};
-            for (const prop of Object.getOwnPropertyNames(this)) {
-                if (prop === 'employeeViewModel' || prop === 'studentViewModel' || prop === 'personalViewModel') {
-                    continue;
-                }
-                if (prop === 'commentsStore') {
-                    continue;
-                }
-                if (prop === 'firstNames' || prop === 'alphabet' || prop === 'lastNames') {
-                    continue;
-                }
-                if (prop === 'isFetching' || prop === 'isSaving') {
-                    continue;
-                }
-                diffObj[prop] = this[prop];
-            }
-            return diffObj;
+            const diffObj: { [index: string]: any } = {};
+            for (const prop of this.diffProperties) diffObj[prop as string] = this[prop];
+            return diffObj as DiffObject;
         }
 
         getLocation(): LocationMeta {
@@ -270,6 +267,15 @@ define([
                 school: this.School,
                 courses: this.Courses
             };
+        }
+
+        getUserById(id: string) {
+            if (['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'].filter(letter => letter === id).length !== 1) {
+                return null;
+            }
+            type userProp = 'propertyA3' | 'propertyB3' | 'propertyC3' | 'propertyD3' | 'propertyE3' | 'propertyF3' | 'propertyG3' | 'propertyH3';
+            const prop = `property${id}3` as userProp;
+            return this[prop];
         }
 
         initializeNumber(obj: { a: number; b: number } = { a: 12, b: 13 }) {
@@ -377,9 +383,9 @@ define([
             const properties = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             for (const letter of properties) {
                 if (this.propertyA1 && this.propertyA2 < this.propertyB2) {
-                    this.functionD(this[`property${letter}3`], Math.random() * 20);
+                    this.functionD(this.getUserById(letter), Math.random() * 20);
                 } else {
-                    this.functionD(this[`property${letter}3`], Math.random() * 10);
+                    this.functionD(this.getUserById(letter), Math.random() * 10);
                 }
             }
         }
@@ -428,9 +434,9 @@ define([
             const properties = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             for (const letter of properties) {
                 if (obj.IsQuestionable && obj.Property.Data < num) {
-                    this.functionD1(this[`property${letter}3`], Math.random() * 20);
+                    this.functionD1(this.getUserById(letter), Math.random() * 20);
                 } else {
-                    this.functionD1(this[`property${letter}3`], Math.random() * 10);
+                    this.functionD1(this.getUserById(letter), Math.random() * 10);
                 }
             }
         }
@@ -479,9 +485,9 @@ define([
             const properties = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             for (const letter of properties) {
                 if (this.propertyA2 && this.propertyA3.Property.Data < this.propertyB3.Property.Data) {
-                    this.functionD2(this[`property${letter}3`], Math.random() * 20);
+                    this.functionD2(this.getUserById(letter), Math.random() * 20);
                 } else {
-                    this.functionD2(this[`property${letter}3`], Math.random() * 10);
+                    this.functionD2(this.getUserById(letter), Math.random() * 10);
                 }
             }
         }

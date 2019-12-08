@@ -32,3 +32,6 @@
 - [ ] Public, protected, private access modifiers
 ### 5 - Functions
 - [X] Function types as arrow functions
+
+- [ ] - Type Dojo imports and widgets
+

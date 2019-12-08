@@ -1,15 +1,14 @@
 define([
     "dojo/_base/declare", 
     "dojo/store/util/SimpleQueryEngine",
-    "dojo/request",
-    'dojo/_base/lang'
-], (declare, SimpleQueryEngine, request, lang) => {
-    class FlatEntityStore<T> {
+    "dojo/request"
+], (declare, SimpleQueryEngine, request) => {
+    class FlatEntityStore<T> implements IFlatEntityStore<T>{
         isTracking = false;
         conditionA = false;
         conditionB = false;
         conditionC = false;
-        dummyUrl = 'http://localhost:9001/dummy';
+        dummyUrl = 'http://localhost:9001/dummy'; 
 
         data: FlatEntity<T>[] = null;
         index: number = null;
@@ -17,7 +16,7 @@ define([
 
         idProperty =  "id";
 
-        constructor(options) { 
+        constructor(options: object) { 
             if (options && options.isTracking) {
                 this.isTracking = options.isTracking;
             }

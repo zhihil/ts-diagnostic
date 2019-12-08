@@ -4,19 +4,30 @@ define([
     'dojo/Stateful',
     'dojo/request',
     'models/ProfileViewModel'
-], (declare, lang, Stateful, request, ProfileViewModel) => {
-    return declare([Stateful], {
-        userProfiles: null,
-        selectedProfileId: null,
-        usersUrl: 'http://localhost:9001/users',
+], (
+    declare: Function, 
+    lang: any, 
+    Stateful: object, 
+    request: Function, 
+    ProfileViewModel: IConstructableProfileViewModel
+) => {
+    class ProfileCollectionViewModel implements IProfileCollectionViewModel {
+        /* Mixin implementation methods */  
+        set: (prop: string, value: any) => void;
+        get: (prop: string) => any;
+        watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
-        isFetching: false,
+        userProfiles: { [id: string]: IProfileViewModel }= null;
+        selectedProfileId: string = null;
+        usersUrl: string = 'http://localhost:9001/users';
 
-        constructor() { },
+        isFetching: false;
+
+        constructor() { }
 
         refreshData() { 
             return this.getUsersData();
-        },
+        }
 
         getUsersData() {
             this.set('isFetching', true);
@@ -24,10 +35,10 @@ define([
                 lang.hitch(this, this.getUsersSuccess),
                 lang.hitch(this, this.getUsersFailed)
             );
-        },
+        }
 
-        getUsersSuccess(data) {
-            const parsedData = JSON.parse(data);
+        getUsersSuccess(data: string) {
+            const parsedData: { [id: string]: IProfileModel } = JSON.parse(data);
 
             this.set('userProfiles', {});
             for (const id in parsedData) {
@@ -40,24 +51,29 @@ define([
             }
 
             this.set('isFetching', false);
-        },
+        }
 
-        getUsersFailed(_err) {
+        getUsersFailed() {
             this.set('isFetching', false);
-        },
+        }
 
-        changeSelectedUser(targetId) {
+        changeSelectedUser(targetId: number) {
             const recordIds = Object.keys(this.userProfiles);
-            const filteredRecords = recordIds.filter(id => this.userProfiles[id].ProfileId === targetId);
+            let selectedId: number = null;
 
-            if (filteredRecords.length === 0) {
+            recordIds.forEach((id, index) => {
+                if (this.userProfiles[id].ProfileId === targetId) {
+                    selectedId = index;
+                }
+            });
+
+            if (selectedId === null) {
                 throw Error("Attempted to change to a non-existent user");
-            } else if (filteredRecords.length > 1) {
-                throw Error("Unknown error - malformed data has duplicate users")
             }
 
-            const selectedId = filteredRecords[0];
             this.set('selectedProfileId', recordIds[selectedId]);
         }
-    });
+    }
+
+    return declare([Stateful], ProfileCollectionViewModel.prototype);
 });

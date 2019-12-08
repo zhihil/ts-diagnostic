@@ -2,8 +2,8 @@ define([
     'dojo/_base/declare',
     'dojo/Stateful',
     'dojo/_base/lang'
-], (declare, Stateful, lang) => {
-    class StudentViewModel {
+], (declare: Function, Stateful: object, lang: any) => {
+    class StudentViewModel implements IStudentViewModel {
         /* Personal details */
         FirstName =  "";
         LastName =  "";
@@ -11,7 +11,7 @@ define([
         School =  "";
         Gender =  "";
         PhoneNumberCell =  "";
-        Courses =  [];
+        Courses: string[] =  [];
         SIN =  "";
         
         propertyA = "";
@@ -49,9 +49,9 @@ define([
         lastNames = ["Wellington", "Smith", "Thurston", "Armstrong", "Samson", "Goldberg"];
 
         /* Methods derived from the parent model */
-        getEducationalBio = null;
+        getEducationalBio: () => EducationalBiography = null;
 
-        constructor(model) {
+        constructor(model: IProfileViewModel) {
             this.FirstName = model.FirstName
             this.LastName = model.LastName
             this.Age = model.Age
@@ -90,7 +90,7 @@ define([
             this.propertyC5 = this.initializeObjectC();
         }
 
-        registerWatches(model) {
+        registerWatches(model: IProfileViewModel) {
             /* Boilerplate to initialze handlers that keep derived model updated 
                 with original model
             */
@@ -180,6 +180,15 @@ define([
             };
         }
 
+        getUserById(id: string) {
+            if (['A', 'B', 'C'].filter(letter => letter === id).length !== 1) {
+                return null;
+            }
+            type userProp = 'propertyA3' | 'propertyB3' | 'propertyC3';
+            const prop = `property${id}3` as userProp;
+            return this[prop];
+        }
+
         functionA() {
             const localA = 10;
             const localB = "string";
@@ -225,9 +234,9 @@ define([
             const properties = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             for (const letter of properties) {
                 if (this.propertyA1 && this.propertyA2 < this.propertyB2) {
-                    this.functionD(this[`property${letter}3`], Math.random() * 20);
+                    this.functionD(this.getUserById(letter), Math.random() * 20);
                 } else {
-                    this.functionD(this[`property${letter}3`], Math.random() * 10);
+                    this.functionD(this.getUserById(letter), Math.random() * 10);
                 }
             }
         }
@@ -276,9 +285,9 @@ define([
             const properties = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             for (const letter of properties) {
                 if (obj.IsQuestionable && obj.Property.Data < num) {
-                    this.functionD1(this[`property${letter}3`], Math.random() * 20);
+                    this.functionD1(this.getUserById(letter), Math.random() * 20);
                 } else {
-                    this.functionD1(this[`property${letter}3`], Math.random() * 10);
+                    this.functionD1(this.getUserById(letter), Math.random() * 10);
                 }
             }
         }
@@ -327,9 +336,9 @@ define([
             const properties = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             for (const letter of properties) {
                 if (this.propertyA2 && this.propertyA3.Property.Data < this.propertyB3.Property.Data) {
-                    this.functionD2(this[`property${letter}3`], Math.random() * 20);
+                    this.functionD2(this.getUserById(letter), Math.random() * 20);
                 } else {
-                    this.functionD2(this[`property${letter}3`], Math.random() * 10);
+                    this.functionD2(this.getUserById(letter), Math.random() * 10);
                 }
             }
         }

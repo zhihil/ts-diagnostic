@@ -71,3 +71,118 @@ declare interface EducationalBiography {
   school: string;
   courses: string[];
 }
+
+declare interface CommentMetadata {
+  textContent: string;
+  createdTimestamp: string;
+  creatorId: number;
+  targetUserId: number;
+}
+
+declare interface DiffObject {
+  ProfileId?: number;
+  AccountCreated?: string;
+  Verified?: boolean;
+  Confirmed?: boolean;
+  Premium?: boolean;
+  FirstName?: string;
+  LastName?: string;
+  Age?: number;
+  School?: string;
+  Occupation?: string;
+  City?: string;
+  State?: string;
+  Country?: string;
+  Address?: string;
+  WorkAddress?: string;
+  Gender?: Gender;
+  Birthday?: string;
+  Hometown?: string;
+  PhoneNumberCell?: string;
+  PhoneNumberBusiness1?: string;
+  PhoneNumberBusiness2?: string;
+  Friends?: number[];
+  Status?: string;
+  Courses?: string[];
+  SIN?: string;
+}
+
+interface WatchHandler<T> {
+  (propName: string, oldVal: T, newVal: T): void;
+}
+
+declare interface IProfileModel {
+  ProfileId: number;
+  AccountCreated: string;
+  Verified: boolean;
+  Confirmed: boolean;
+  Premium: boolean;
+  FirstName: string;
+  LastName: string;
+  Age: number;
+  School: string;
+  Occupation: string;
+  City: string;
+  State: string;
+  Country: string;
+  Address: string;
+  WorkAddress: string;
+  Gender: Gender;
+  Birthday: string;
+  Hometown: string;
+  PhoneNumberCell: string;
+  PhoneNumberBusiness1: string;
+  PhoneNumberBusiness2: string;
+  Friends: number[];
+  Status: string;
+  Courses: string[];
+  SIN: string;
+}
+
+declare interface IEmployeeViewModel {}
+declare interface IStudentViewModel {}
+declare interface IPersonalViewModel {}
+
+declare interface IProfileViewModel extends IProfileModel {
+  getLocation(): LocationMeta;
+  getContactInfo(): Contact;
+  getBiography(): Biography;
+  getProfessionalBio(): ProfessionalBiography;
+  getEducationalBio(): EducationalBiography;
+
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+  get: (prop: string) => any;
+  watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+}
+
+declare interface IProfileCollectionViewModel {}
+
+/* These are necessary because Dojo's imports don't take advantage of the fact
+    that in TypeScript, class declarations create both a value, the class's 
+    constructor function, and a type, the class's actual type.
+
+    This project opted to use declaration files to overcome this issue, however,
+    it is not possible to simply embed the constructor's type signature into an
+    interface. Some additional legwork is needed when a class constructor is
+    required.  
+*/
+declare interface DerivedConstructable<T,K> {
+  new(model: K): T;
+}
+
+declare interface IConstructablePersonalViewModel extends 
+  IPersonalViewModel, 
+  DerivedConstructable<IPersonalViewModel, IProfileViewModel> {}
+
+declare interface IConstructableEmployeeViewModel extends 
+  IEmployeeViewModel, 
+  DerivedConstructable<IEmployeeViewModel, IProfileViewModel> {}
+
+declare interface IConstructableStudentViewModel extends 
+  IStudentViewModel, 
+  DerivedConstructable<IStudentViewModel, IProfileViewModel> {}
+
+declare interface IConstructableProfileViewModel extends 
+  IProfileViewModel, 
+  DerivedConstructable<IProfileViewModel, IProfileModel> {}
