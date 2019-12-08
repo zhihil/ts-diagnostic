@@ -6,17 +6,17 @@ define([
   'dojo/text!templates/EmployeeViewTemplate.html',
   'views/controls/ProfileColumn'
 ], (
-  declare, 
-  _WidgetBase, 
-  _TemplatedMixin, 
-  _WidgetsInTemplateMixin,
+  declare: Function, 
+  _WidgetBase: object, 
+  _TemplatedMixin: object, 
+  _WidgetsInTemplateMixin: object, 
   template: string
 ) => {
   class EmployeeView {
     templateString = template;
 
     /* Model */
-    model = null;
+    model: IEmployeeViewModel = null;
 
     /* Attach points */
     fieldName: IFieldComponent = null;
@@ -30,12 +30,12 @@ define([
     fieldSIN: IFieldComponent = null;
 
     /* Watch handles */
-    handles: Dojo.Handle[] = [];
+    handles: any[] = [];
 
     /* Lifecycle Methods */
     constructor() {}
 
-    _setModelAttr(value) {
+    _setModelAttr(value: IEmployeeViewModel) {
         this.model = value;
         if (value) this.reactToModel();
     }

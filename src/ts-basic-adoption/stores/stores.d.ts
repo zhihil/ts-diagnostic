@@ -21,5 +21,5 @@ declare interface IFlatEntityStoreAddOptions<T> {
 }
 
 declare interface ConstructableFlatEntityStore<T> extends IFlatEntityStore<T> {
-  new(options: IFlatEntityStoreCtorOptions<T>): IFlatEntityStore<T>
+  new(options?: IFlatEntityStoreCtorOptions<T>): IFlatEntityStore<T>
 }

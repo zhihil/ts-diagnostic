@@ -3,7 +3,12 @@ define([
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
   'dojo/text!templates/controls/FieldComponentTemplate.html'
-], (declare, _WidgetBase, _TemplatedMixin, template: string) => {
+], (
+  declare: Function, 
+  _WidgetBase: object, 
+  _TemplatedMixin: object, 
+  template: string
+) => {
   class FieldComponent {
     templateString = template;
 

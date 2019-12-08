@@ -1,23 +1,60 @@
 /// <reference path="../global.d.ts" />
 
-declare interface IFieldComponent extends Dojo.Stateful, Dojo.Class {
+declare interface IFieldComponent {
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+  get: (prop: string) => any;
+  watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+
   value: string;
 }
 
-declare interface IProfileColumn extends Dojo.View {
+declare interface IProfileColumn {
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+  get: (prop: string) => any;
 }
 
-declare interface IProfileSelect extends Dojo.View {
+declare interface IProfileSelect {
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+
+  value: string;
 }
 
-declare interface IProfileView extends Dojo.View {
+declare interface IProfileView {
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+  get: (prop: string) => any;
+
+  domNode: HTMLElement;
 }
 
-declare interface IEmployeeView extends Dojo.View {
+declare interface IEmployeeView {
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+  get: (prop: string) => any;
+
+  domNode: HTMLElement;
 }
 
-declare interface IStudentView extends Dojo.View {
+declare interface IStudentView {
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+  get: (prop: string) => any;
+
+  domNode: HTMLElement;
 }
 
-declare interface IPersonalView extends Dojo.View {
+declare interface IPersonalView {
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+  get: (prop: string) => any;
+
+  domNode: HTMLElement;
+}
+
+declare interface DojoSelectValue {
+  value: any;
+  label: string;
 }

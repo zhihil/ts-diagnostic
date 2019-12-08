@@ -6,23 +6,22 @@ define([
   'dojo/text!templates/StudentViewTemplate.html',
   'views/controls/ProfileColumn',
 ], (
-  declare, 
-  _WidgetBase, 
-  _TemplatedMixin, 
-  _WidgetsInTemplateMixin,
+  declare: Function, 
+  _WidgetBase: object, 
+  _TemplatedMixin: object, 
+  _WidgetsInTemplateMixin: object,
   template: string
 ) => {
   class StudentView implements IStudentView {
     templateString = template;
 
-    /* Mixin implementation methods */
-    inherited: (args: IArguments) => any;    
+    /* Mixin implementation methods */ 
     set: (prop: string, value: any) => void;
     get: (prop: string) => any;
-    watch: (prop: string, handler: Dojo.WatchHandler) => void;
+    watch: (prop: string, handler: Function) => void;
 
     /* Model */
-    model = null;
+    model: IStudentViewModel = null;
 
     /* Dojo attach points */
     fieldName: IFieldComponent = null;
@@ -46,11 +45,7 @@ define([
     coursesListNode: IFieldComponent = null;
     domNode: HTMLDivElement = null;
 
-    constructor() { 
-      this.inherited(arguments);
-    }
-
-    _setModelAttr(value) {
+    _setModelAttr(value: IStudentViewModel) {
       this.model = value;
       if (value) this.reactToModel();
     }

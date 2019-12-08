@@ -9,7 +9,7 @@ define([
         LastName =  "";
         Age: number = null;
         School =  "";
-        Gender =  "";
+        Gender: Gender =  null;
         PhoneNumberCell =  "";
         Courses: string[] =  [];
         SIN =  "";

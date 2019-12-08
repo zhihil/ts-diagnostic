@@ -139,9 +139,47 @@ declare interface IProfileModel {
   SIN: string;
 }
 
-declare interface IEmployeeViewModel {}
-declare interface IStudentViewModel {}
-declare interface IPersonalViewModel {}
+declare interface IEmployeeViewModel {
+  FirstName: string;
+  LastName: string;
+  Age: number;
+  Occupation: string;
+  WorkAddress: string;
+  Gender: Gender;
+  PhoneNumberCell: string;
+  PhoneNumberBusiness1: string;
+  PhoneNumberBusiness2: string
+  SIN: string;
+}
+
+declare interface IStudentViewModel {
+  FirstName: string;
+  LastName: string;
+  Age: number;
+  School: string;
+  Gender: Gender;
+  PhoneNumberCell: string;
+  Courses: string[];
+  SIN: string;
+}
+
+declare interface IPersonalViewModel {
+  FirstName: string;
+  LastName: string;
+  Age: number;
+  School: string;
+  Occupation: string;
+  City: string;
+  State: string;
+  Country: string;
+  Address: string;
+  Gender: Gender;
+  Birthday: string;
+  Hometown: string;
+  PhoneNumberCell: string;
+  Friends: number[];
+  Status: string;
+}
 
 declare interface IProfileViewModel extends IProfileModel {
   getLocation(): LocationMeta;
@@ -154,9 +192,24 @@ declare interface IProfileViewModel extends IProfileModel {
   set: (prop: string, value: any) => void;
   get: (prop: string) => any;
   watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+
+  personalViewModel: IPersonalViewModel;
+  employeeViewModel: IEmployeeViewModel;
+  studentViewModel: IStudentViewModel;
 }
 
-declare interface IProfileCollectionViewModel {}
+declare interface IProfileCollectionViewModel {
+  /* Mixin implementation methods */  
+  set: (prop: string, value: any) => void;
+  get: (prop: string) => any;
+  watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+
+  userProfiles: Map<IProfileViewModel>;
+  selectedProfileId: string;
+
+  getUsersData(): any;
+  changeSelectedUser(targetId: number): void;
+}
 
 /* These are necessary because Dojo's imports don't take advantage of the fact
     that in TypeScript, class declarations create both a value, the class's 
@@ -186,3 +239,7 @@ declare interface IConstructableStudentViewModel extends
 declare interface IConstructableProfileViewModel extends 
   IProfileViewModel, 
   DerivedConstructable<IProfileViewModel, IProfileModel> {}
+
+declare interface IConstructableProfileCollectionViewModel {
+  new(): IProfileCollectionViewModel
+}

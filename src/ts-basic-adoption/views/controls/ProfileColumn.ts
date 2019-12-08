@@ -6,12 +6,18 @@ define([
     "dojo/text!templates/controls/ProfileColumnTemplate.html",
     "views/controls/FieldComponent",
     "dojo/domReady!"
-], (declare, _WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin, template: string) => {
+], (
+    declare: Function, 
+    _WidgetBase: object, 
+    _TemplatedMixin: object, 
+    _WidgetsInTemplateMixin: object, 
+    template: string
+) => {
     class ProfileColumn {
         templateString = template;
 
-        /* IPersonalViewModel */
-        model = null;
+        /* IProfileViewModel */
+        model: IProfileViewModel = null;
 
         /* Dojo Attach Points */
         fieldName: IFieldComponent = null;
@@ -37,7 +43,7 @@ define([
         /* Lifecycle Methods */
         constructor() { }
 
-        _setModelAttr(value) {
+        _setModelAttr(value: IProfileViewModel) {
             this.model = value;
             if (value) this.reactToModel();
         }

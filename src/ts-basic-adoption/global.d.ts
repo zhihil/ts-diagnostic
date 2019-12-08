@@ -59,3 +59,7 @@ declare namespace Dojo {
 */
 
 declare const define: Function;
+
+declare interface Map<T> {
+  [id: string]: T;
+}

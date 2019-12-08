@@ -17,7 +17,7 @@ define([
         get: (prop: string) => any;
         watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
-        userProfiles: { [id: string]: IProfileViewModel }= null;
+        userProfiles: Map<IProfileViewModel> = null;
         selectedProfileId: string = null;
         usersUrl: string = 'http://localhost:9001/users';
 

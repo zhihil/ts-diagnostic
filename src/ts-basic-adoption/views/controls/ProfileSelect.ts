@@ -7,26 +7,26 @@ define([
     'dojo/text!templates/controls/ProfileSelectTemplate.html',
     'dijit/form/Select',
 ], (
-  declare, 
-  lang, 
-  _WidgetBase, 
-  _TemplatedMixin, 
-  _WidgetsInTemplateMixin, 
+  declare: Function, 
+  lang: any, 
+  _WidgetBase: object, 
+  _TemplatedMixin: object, 
+  _WidgetsInTemplateMixin: object, 
   template: string,
-  Select
+  Select: any
 ) => {
   class ProfileSelect {
     templateString = template;
 
     /* Dojo attach points */
     selectContainer: HTMLDivElement = null;
-    selectWidget = null; 
+    selectWidget: typeof Select = null; 
 
     /* Dojo props */
-    values: Dojo.SelectValue[] = [];
+    values: DojoSelectValue[] = [];
     onChanged: (newVal: number) => void = () => {};
 
-    _setValuesAttr(newValues: Dojo.SelectValue[]) {
+    _setValuesAttr(newValues: DojoSelectValue[]) {
       this.values = newValues;
       this._clearValueNodes();
 

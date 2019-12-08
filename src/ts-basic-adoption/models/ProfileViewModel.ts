@@ -11,7 +11,7 @@ define([
     EmployeeViewModel: IConstructableEmployeeViewModel, 
     PersonalViewModel: IConstructablePersonalViewModel, 
     StudentViewModel: IConstructableStudentViewModel,
-    FlatEntityStore: IFlatEntityStore<CommentMetadata>,
+    FlatEntityStore: ConstructableFlatEntityStore<CommentMetadata>,
 ) => {
     class ProfileViewModel implements IProfileViewModel {
         /* Mixin implementation methods */  
@@ -219,7 +219,7 @@ define([
             this.personalViewModel = new PersonalViewModel(this);
             this.studentViewModel = new StudentViewModel(this);
 
-            this.commentsStore = new FlatEntityStore({});
+            this.commentsStore = new FlatEntityStore();
         }
 
         diff() {

@@ -12,14 +12,14 @@ define([
   'views/controls/ProfileSelect',
   'dijit/form/Button'
 ], (
-  ProfileCollectionViewModel,
-  declare, 
-  lang,
-  domStyle,
-  on,
-  _WidgetBase, 
-  _TemplatedMixin, 
-  _WidgetsInTemplateMixin,
+  ProfileCollectionViewModel: IConstructableProfileCollectionViewModel,
+  declare: Function, 
+  lang: any,
+  domStyle: any,
+  on: Function,
+  _WidgetBase: object, 
+  _TemplatedMixin: object, 
+  _WidgetsInTemplateMixin: object,
   template: string
 ) => {
   type viewType = 'personal' | 'employee' | 'student' | null;
@@ -31,11 +31,10 @@ define([
     inherited: (args: IArguments) => any;    
     set: (prop: string, value: any) => void;
     get: (prop: string) => any;
-    watch: (prop: string, handler: Dojo.WatchHandler) => void;
 
     /* Model */
-    profileModels = null;
-    selectedModel = null;
+    profileModels: IProfileCollectionViewModel = null;
+    selectedModel: IProfileViewModel = null;
 
     /* Attach points */
     personalView: IPersonalView = null;
@@ -47,12 +46,12 @@ define([
     currentView: IPersonalView | IEmployeeView | IStudentView = null;
     domNode: HTMLDivElement = null;
 
-    showPersonalBtn = null;
-    showEmployeeBtn = null;
-    showStudentBtn = null;
+    showPersonalBtn: any = null;
+    showEmployeeBtn: any = null;
+    showStudentBtn: any = null;
 
     /* Watch handles */
-    handles: Dojo.Handle[] = [];
+    handles: any[] = [];
 
     /* Function references to lang.hitch'd methods */
     onSelectedProfileChanged: (newProfileId: string) => void = null;
@@ -102,7 +101,6 @@ define([
 
     destroy() {
       this.handles.forEach(handle => handle.unwatch());
-      this.profileModels.destroy();
     }
 
     onSelectedProfileIdChanged(_propName: string, _oldValue: string, _newValue: string) {
@@ -118,7 +116,7 @@ define([
      this.profileColumn.set('model', this.selectedModel);
     }
 
-    _onSelectedProfileChanged(newProfile: string) {
+    _onSelectedProfileChanged(newProfile: number) {
       this.profileModels.changeSelectedUser(newProfile);
     }
 

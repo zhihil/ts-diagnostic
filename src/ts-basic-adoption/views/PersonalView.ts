@@ -6,10 +6,10 @@ define([
   'dojo/text!templates/PersonalViewTemplate.html',
   'views/controls/ProfileColumn'
 ], (
-  declare, 
-  _WidgetBase, 
-  _TemplatedMixin, 
-  _WidgetsInTemplateMixin,
+  declare: Function, 
+  _WidgetBase: object, 
+  _TemplatedMixin: object, 
+  _WidgetsInTemplateMixin: object,
   template: string
 ) => {
   class PersonalView implements IPersonalView {
@@ -19,10 +19,9 @@ define([
     inherited: (args: IArguments) => any;    
     set: (prop: string, value: any) => void;
     get: (prop: string) => any;
-    watch: (prop: string, handler: Dojo.WatchHandler) => void;
 
     /* Model */
-    model = null;
+    model: IPersonalViewModel = null;
 
     /* Attach points */
     fieldName: IFieldComponent = null;
@@ -42,12 +41,12 @@ define([
     domNode: HTMLDivElement = null;
 
     /* Watch handles */
-    handles: Dojo.Handle[] = [];
+    handles: any[] = [];
 
     /* Lifecycle Methods */
     constructor() {}
 
-    _setModelAttr(value) {
+    _setModelAttr(value: IPersonalViewModel) {
         this.model = value;
         if (value) this.reactToModel();
     }
