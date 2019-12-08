@@ -10,39 +10,47 @@ define([
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin,
-  template
+  template: string
 ) => {
-  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
-    templateString: template,
+  class PersonalView implements IPersonalView {
+    templateString = template;
+
+    /* Mixin implementation methods */
+    inherited: (args: IArguments) => any;    
+    set: (prop: string, value: any) => void;
+    get: (prop: string) => any;
+    watch: (prop: string, handler: Dojo.WatchHandler) => void;
 
     /* Model */
-    model: null,
+    model = null;
 
     /* Attach points */
-    fieldName: null,
-    fieldAge: null,
-    fieldOccupation: null,
-    fieldCity: null,
-    fieldState: null,
-    fieldCountry: null,
-    fieldAddress: null,
-    fieldGender: null,
-    fieldBirthday: null,
-    fieldHometown: null,
-    fieldPhoneNumber: null,
-    fieldStatus: null,
-    friendsListNode: null,
+    fieldName: IFieldComponent = null;
+    fieldAge: IFieldComponent = null;
+    fieldSchool: IFieldComponent = null;
+    fieldOccupation: IFieldComponent = null;
+    fieldCity: IFieldComponent = null;
+    fieldState: IFieldComponent = null;
+    fieldCountry: IFieldComponent = null;
+    fieldAddress: IFieldComponent = null;
+    fieldGender: IFieldComponent = null;
+    fieldBirthday: IFieldComponent = null;
+    fieldHometown: IFieldComponent = null;
+    fieldPhoneNumber: IFieldComponent = null;
+    fieldStatus: IFieldComponent = null;
+    friendsListNode: IFieldComponent = null;
+    domNode: HTMLDivElement = null;
 
     /* Watch handles */
-    handles: [],
+    handles: Dojo.Handle[] = [];
 
     /* Lifecycle Methods */
-    constructor() {},
+    constructor() {}
 
     _setModelAttr(value) {
         this.model = value;
         if (value) this.reactToModel();
-    },
+    }
 
     reactToModel() {
         this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
@@ -58,6 +66,8 @@ define([
         this.fieldHometown.set('value', this.model.Hometown);
         this.fieldPhoneNumber.set('value', this.model.PhoneNumberCell);
         this.fieldStatus.set('value', this.model.Status);
-    },
-  });
+    }
+  }
+
+  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], PersonalView.prototype);
 });

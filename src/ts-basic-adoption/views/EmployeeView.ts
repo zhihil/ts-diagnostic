@@ -10,36 +10,35 @@ define([
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin,
-  template
+  template: string
 ) => {
-  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
-    templateString: template,
+  class EmployeeView {
+    templateString = template;
 
     /* Model */
-    model: null,
+    model = null;
 
     /* Attach points */
-    fieldName: null,
-    fieldAge: null,
-    fieldOccupation: null,
-    fieldWorkAddress: null,
-    fieldGender: null,
-    fieldPhoneNumber: null,
-    fieldPhoneNumberBusiness1: null,
-    fieldPhoneNumberBusiness2: null,
-    fieldSIN: null,
+    fieldName: IFieldComponent = null;
+    fieldAge: IFieldComponent = null;
+    fieldOccupation: IFieldComponent = null;
+    fieldWorkAddress: IFieldComponent = null;
+    fieldGender: IFieldComponent = null;
+    fieldPhoneNumber: IFieldComponent = null;
+    fieldPhoneNumberBusiness1: IFieldComponent = null;
+    fieldPhoneNumberBusiness2: IFieldComponent = null;
+    fieldSIN: IFieldComponent = null;
 
     /* Watch handles */
-    handles: [],
+    handles: Dojo.Handle[] = [];
 
     /* Lifecycle Methods */
-    constructor() {},
+    constructor() {}
 
     _setModelAttr(value) {
         this.model = value;
         if (value) this.reactToModel();
-    },
-
+    }
 
     reactToModel() {
       this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
@@ -51,6 +50,8 @@ define([
       this.fieldPhoneNumberBusiness1.set('value', this.model.PhoneNumberBusiness1);
       this.fieldPhoneNumberBusiness2.set('value', this.model.PhoneNumberBusiness2);
       this.fieldSIN.set('value', this.model.SIN);
-    },
-  });
+    }
+  }
+
+  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], EmployeeView.prototype);
 });

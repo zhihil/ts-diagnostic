@@ -10,39 +10,50 @@ define([
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin,
-  template
+  template: string
 ) => {
-  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
-    templateString: template,
+  class StudentView implements IStudentView {
+    templateString = template;
+
+    /* Mixin implementation methods */
+    inherited: (args: IArguments) => any;    
+    set: (prop: string, value: any) => void;
+    get: (prop: string) => any;
+    watch: (prop: string, handler: Dojo.WatchHandler) => void;
+
+    /* Model */
+    model = null;
 
     /* Dojo attach points */
-    fieldName: null,
-    fieldAge: null,
-    fieldOccupation: null,
-    fieldCity: null,
-    fieldState: null,
-    fieldCountry: null,
-    fieldAddress: null,
-    fieldWorkAddress: null,
-    fieldGender: null,
-    fieldBirthday: null,
-    fieldHometown: null,
-    fieldPhoneNumber: null,
-    fieldPhoneNumberBusiness1: null,
-    fieldPhoneNumberBusiness2: null,
-    fieldStatus: null,
-    fieldSIN: null,
-    friendsListNode: null,
-    coursesListNode: null,
+    fieldName: IFieldComponent = null;
+    fieldAge: IFieldComponent = null;
+    fieldSchool: IFieldComponent = null;
+    fieldOccupation: IFieldComponent = null;
+    fieldCity: IFieldComponent = null;
+    fieldState: IFieldComponent = null;
+    fieldCountry: IFieldComponent = null;
+    fieldAddress: IFieldComponent = null;
+    fieldWorkAddress: IFieldComponent = null;
+    fieldGender: IFieldComponent = null;
+    fieldBirthday: IFieldComponent = null;
+    fieldHometown: IFieldComponent = null;
+    fieldPhoneNumber: IFieldComponent = null;
+    fieldPhoneNumberBusiness1: IFieldComponent = null;
+    fieldPhoneNumberBusiness2: IFieldComponent = null;
+    fieldStatus: IFieldComponent = null;
+    fieldSIN: IFieldComponent = null;
+    friendsListNode: IFieldComponent = null;
+    coursesListNode: IFieldComponent = null;
+    domNode: HTMLDivElement = null;
 
     constructor() { 
       this.inherited(arguments);
-    },
+    }
 
     _setModelAttr(value) {
       this.model = value;
       if (value) this.reactToModel();
-    },
+    }
 
     reactToModel() {
       this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
@@ -52,5 +63,7 @@ define([
       this.fieldPhoneNumber.set('value', this.model.PhoneNumberCell);
       this.fieldSIN.set('value', this.model.SIN);
     }
-  });
+  }
+
+  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], StudentView.prototype);
 });

@@ -6,8 +6,7 @@
     "noEmitOnError": true,
     "outDir": "frontend/static",
     "target": "ES3",
-    "noImplicitAny": true
   },
-  "include": ["./src/ts-module/**/*.ts", "./src/ts-module/**/*.tsx"],
+  "include": ["./src/ts-basic-adoption/**/*.ts", "./src/ts-basic-adoption/**/*.tsx"],
   "exclude": ["node_modules"]
 }

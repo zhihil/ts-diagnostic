@@ -51,7 +51,6 @@ define([
     onSelectedProfileChanged: null,
   
     constructor() { 
-      this.inherited(arguments);
       this.profileModels = new ProfileCollectionViewModel();
 
       this.handles.push(

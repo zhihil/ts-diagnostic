@@ -12,21 +12,21 @@ define([
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin, 
-  template,
+  template: string,
   Select
 ) => {
-  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
-    templateString: template,
+  class ProfileSelect {
+    templateString = template;
 
     /* Dojo attach points */
-    selectContainer: null,
-    selectWidget: null,
+    selectContainer: HTMLDivElement = null;
+    selectWidget = null; 
 
     /* Dojo props */
-    values: [],
-    onChanged: () => {},
+    values: Dojo.SelectValue[] = [];
+    onChanged: (newVal: number) => void = () => {};
 
-    _setValuesAttr(newValues) {
+    _setValuesAttr(newValues: Dojo.SelectValue[]) {
       this.values = newValues;
       this._clearValueNodes();
 
@@ -36,7 +36,7 @@ define([
         onChange: lang.hitch(this, this._onChanged)
       });
       this.selectWidget.placeAt(this.selectContainer).startup();
-    },
+    }
 
     _clearValueNodes() {
       if (this.selectWidget) this.selectWidget.destroy();
@@ -44,10 +44,12 @@ define([
       while (rootNode.firstChild) {
         rootNode.removeChild(rootNode.firstChild);
       }
-    },
+    }
 
-    _onChanged(newVal) {
+    _onChanged(newVal: number) {
       this.onChanged(newVal);
     }
-  })
+  }
+
+  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], ProfileSelect.prototype);
 });

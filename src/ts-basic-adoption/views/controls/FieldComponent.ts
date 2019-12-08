@@ -3,21 +3,23 @@ define([
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
   'dojo/text!templates/controls/FieldComponentTemplate.html'
-], (declare, _WidgetBase, _TemplatedMixin, template) => {
-  return declare([_WidgetBase, _TemplatedMixin], {
-    templateString: template,
+], (declare, _WidgetBase, _TemplatedMixin, template: string) => {
+  class FieldComponent {
+    templateString = template;
 
     /* Label name */
-    fieldLabel: "",
+    fieldLabel = "";
 
     /* Dojo attach points */
-    fieldNode: null,
+    fieldNode: HTMLSpanElement = null;
 
     /* Binding for the field content */
-    value: null,
-    _setValueAttr(value) {
+    value: string = null;
+    _setValueAttr(value: string) {
       this.value = value;
       this.fieldNode.textContent = this.value;
     }
-  });
+  }
+
+  return declare([_WidgetBase, _TemplatedMixin], FieldComponent.prototype);
 });

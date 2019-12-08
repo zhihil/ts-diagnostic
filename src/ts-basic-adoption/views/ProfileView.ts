@@ -20,35 +20,44 @@ define([
   _WidgetBase, 
   _TemplatedMixin, 
   _WidgetsInTemplateMixin,
-  template
+  template: string
 ) => {
-  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], {
-    templateString: template,
+  type viewType = 'personal' | 'employee' | 'student' | null;
+
+  class ProfileView implements IProfileView {
+    templateString = template;
+
+    /* Mixin implementation methods */
+    inherited: (args: IArguments) => any;    
+    set: (prop: string, value: any) => void;
+    get: (prop: string) => any;
+    watch: (prop: string, handler: Dojo.WatchHandler) => void;
 
     /* Model */
-    profileModels: null,
-    selectedModel: null,
+    profileModels = null;
+    selectedModel = null;
 
     /* Attach points */
-    personalView: null,
-    employeeView: null,
-    studentView: null,
-    profileColumn: null,
-    profileSelect: null,
-    currentView: null,
+    personalView: IPersonalView = null;
+    employeeView: IEmployeeView = null;
+    studentView: IStudentView = null;
+    profileColumn: IProfileColumn = null;
+    profileSelect: IProfileSelect = null;
+    currentViewType: viewType = null;
+    currentView: IPersonalView | IEmployeeView | IStudentView = null;
+    domNode: HTMLDivElement = null;
 
-    showPersonalBtn: null,
-    showEmployeeBtn: null,
-    showStudentBtn: null,
+    showPersonalBtn = null;
+    showEmployeeBtn = null;
+    showStudentBtn = null;
 
     /* Watch handles */
-    handles: [],
+    handles: Dojo.Handle[] = [];
 
     /* Function references to lang.hitch'd methods */
-    onSelectedProfileChanged: null,
+    onSelectedProfileChanged: (newProfileId: string) => void = null;
   
-    constructor() { 
-      this.inherited(arguments);
+    constructor() {
       this.profileModels = new ProfileCollectionViewModel();
 
       this.handles.push(
@@ -69,7 +78,7 @@ define([
       });
 
       this.onSelectedProfileChanged = lang.hitch(this, this._onSelectedProfileChanged);
-    },
+    }
 
     startup() {
       this.inherited(arguments);
@@ -78,25 +87,25 @@ define([
       domStyle.set(this.employeeView.domNode, 'display', 'none');
       domStyle.set(this.studentView.domNode, 'display', 'none');
 
-      this.set('currentView', 'personal');
+      this.set('currentViewType', 'personal');
 
       on(this.showPersonalBtn.domNode, 'click', () => {
-        this.set('currentView', 'personal');
+        this.set('currentViewType', 'personal');
       });
       on(this.showEmployeeBtn.domNode, 'click', () => {
-        this.set('currentView', 'employee');
+        this.set('currentViewType', 'employee');
       });
       on(this.showStudentBtn.domNode, 'click', () => {
-        this.set('currentView', 'student');
+        this.set('currentViewType', 'student');
       });
-    },
+    }
 
     destroy() {
       this.handles.forEach(handle => handle.unwatch());
       this.profileModels.destroy();
-    },
+    }
 
-    onSelectedProfileIdChanged(_propName, _oldValue, _newValue) {
+    onSelectedProfileIdChanged(_propName: string, _oldValue: string, _newValue: string) {
       /* When the currently selected profile has changed, update the
           binding of this view to the newly selected model.
       */
@@ -107,13 +116,15 @@ define([
      this.employeeView.set('model', this.selectedModel.employeeViewModel);
      this.studentView.set('model', this.selectedModel.studentViewModel);
      this.profileColumn.set('model', this.selectedModel);
-    },
+    }
 
-    _onSelectedProfileChanged(newProfile) {
+    _onSelectedProfileChanged(newProfile: string) {
       this.profileModels.changeSelectedUser(newProfile);
-    },
+    }
 
-    _setCurrentViewAttr(newVal) {
+    _setCurrentViewTypeAttr(newVal: viewType) {
+      this.currentViewType = newVal;
+
       if (this.currentView) {
         domStyle.set(this.currentView.domNode, 'display', 'none');
       }
@@ -131,5 +142,7 @@ define([
         throw Error('Invalid view setting');
       }
     }
-  });
+  }
+
+  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], ProfileView.prototype);
 });

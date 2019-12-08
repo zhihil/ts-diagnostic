@@ -73,7 +73,7 @@ define([
         }
 
         remove(id: number) { 
-            const itemIndex = this.data.findIndex(item => item.id === id);
+            const itemIndex = this.data.map(item => item.id).indexOf(id);
             if (itemIndex === -1) return;
             this.data = [...this.data.slice(0,itemIndex), ...this.data.slice(itemIndex + 1)];
         }

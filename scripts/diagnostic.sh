@@ -22,7 +22,7 @@ outDir=`egrep "('|\")outDir('|\"):" tsconfig.json | cut -d ':' -f 2 | sed 's/,//
 echo "Found tsc --outDir: $outDir"
 
 totalTime=0
-for i in 0
+for i in 0 1 2 3 4 5 6 7 8 9
 do
     trialTime=0
     if [ $# -eq 1 ] && [ $1 = '--debug' ] 
