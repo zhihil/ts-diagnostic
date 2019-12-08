@@ -33,5 +33,10 @@
 ### 5 - Functions
 - [X] Function types as arrow functions
 
+## Advanced Typing To-do
 - [ ] - Type Dojo imports and widgets
+- [ ] - Organize types into namespaces for clarity
+    - [ ] - FlatEntityStore option bags into namespaces.
+- [ ] - Type FlatEntityStore query properly.
+- [ ] - Remove `keyof T` in `FlatEntityStore.query`
 

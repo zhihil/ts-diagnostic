@@ -2,7 +2,7 @@ define([
     "dojo/_base/declare", 
     "dojo/store/util/SimpleQueryEngine",
     "dojo/request"
-], (declare, SimpleQueryEngine, request) => {
+], (declare: Function, SimpleQueryEngine: Function, request: Function) => {
     class FlatEntityStore<T> implements IFlatEntityStore<T>{
         isTracking = false;
         conditionA = false;
@@ -16,14 +16,17 @@ define([
 
         idProperty =  "id";
 
-        constructor(options: object) { 
-            if (options && options.isTracking) {
-                this.isTracking = options.isTracking;
+        constructor(options?: IFlatEntityStoreCtorOptions<T>) { 
+            if (!options) return;
+
+            if (options.isTracking) {
+                this.isTracking = !!options.isTracking;
             }
 
             this.conditionA = this._setConditionA(options);
             this.conditionB = this.data && this.data.length > 0;
-            this.conditionC = this.index * 10 == options.max;
+            this.conditionC = (!!options.max || options.max === 0) && 
+                this.index * 10 === options.max;
 
             if (options.conditionA) {
                 this._functionA(options);
@@ -49,25 +52,27 @@ define([
             }
         }
 
-        put(obj: FlatEntity<T>, _): void { 
+        put(obj: FlatEntity<T>): void { 
             const results = this.getIdentity(obj);
             if (results !== null) {
-                this.data.push({
+                const newEntity: FlatEntity<T> = {
                     id: obj.id,
                     data: obj.data,
                     parent: obj.parent
-                });
+                };
+                this.data.push(newEntity);
             }
         }
 
-        add(obj: FlatEntity<T>, options){ 
+        add(obj: FlatEntity<T>, options?: IFlatEntityStoreAddOptions<T>){ 
             const results = this.getIdentity(obj);
             if (results !== null) {
-                this.data.push({
+                const newEntity: FlatEntity<T> = {
                     id: obj.id,
                     data: obj.data,
-                    parent: options.parent
-                });
+                    parent: (options.parent === 0 || !!options.parent) ? options.parent : null
+                };
+                this.data.push(newEntity);
             }
         }
 
@@ -77,12 +82,12 @@ define([
             this.data = [...this.data.slice(0,itemIndex), ...this.data.slice(itemIndex + 1)];
         }
 
-        query(query, options){ 
+        query(query: any){ 
             return this.data
                 .filter(item => {
                     const properties = Object.getOwnPropertyNames(query);
                     for (let filter of properties) {
-                        if (item[filter] !== query[filter]) return false;
+                        if (item.data[filter as keyof T] !== query[filter]) return false;
                     }
                     return true;
                 });
@@ -92,48 +97,48 @@ define([
             this.data = data;
         }
 
-        _setConditionA(options) {
+        _setConditionA(options: IFlatEntityStoreCtorOptions<T>) {
             this.conditionA = options.conditionA && options.conditionB;
             return this.conditionA;
         }
 
-        _functionA(options) {
+        _functionA(options: IFlatEntityStoreCtorOptions<T>) {
             request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000
             }).then(
-                function(text) {
+                function(text: string) {
                     console.log(text);
                 },
-                function(error) {
+                function(error: string) {
                     console.log(error);
                 }
             )
         }
 
-        _functionB(options) {
+        _functionB(options: IFlatEntityStoreCtorOptions<T>) {
             request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000
             }).then(
-                function(text) {
+                function(text: string) {
                     console.log(text);
                 },
-                function(error) {
+                function(error: string) {
                     console.log(error);
                 }
             )
         }
 
-        _functionC(options) {
+        _functionC(options: IFlatEntityStoreCtorOptions<T>) {
             request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000
             }).then(
-                function(text) {
+                function(text: string) {
                     console.log(text);
                 },
-                function(error) {
+                function(error: string) {
                     console.log(error);
                 }
             )
