@@ -4,7 +4,7 @@
 - [X] Implement dropdown to switch between different users.
 - [ ] Implement a comments view to display comments associated with the user.
 
-- [ X Create a .js renamed to .ts module
+- [X] Create a .js renamed to .ts module
 - [ ] Create a fully type .ts variant
 - [ ] Create an advanced type .ts variant
 
