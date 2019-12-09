@@ -1,4 +1,5 @@
 /// <reference path="../ts-adv-adoption.d.ts" />
+/// <reference path="../models/models.d.ts" />
 
 interface View extends Dojo.Class, Dojo._WidgetBase, Dojo._WidgetsInTemplateMixin {}
 interface SimpleView extends Dojo.Class, Dojo._WidgetBase {}

@@ -1,3 +1,5 @@
+/// <reference path="./models.d.ts" />
+
 define([
     'dojo/_base/declare',
     'dojo/Stateful',

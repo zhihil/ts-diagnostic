@@ -1,3 +1,5 @@
+/// <reference path="../views.d.ts" />
+
 define([
   'dojo/_base/declare',
   'dijit/_WidgetBase',

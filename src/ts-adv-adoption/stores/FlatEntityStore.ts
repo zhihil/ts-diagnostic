@@ -1,8 +1,10 @@
+/// <reference path="./stores.d.ts" />
+
 define([
     "dojo/_base/declare", 
     "dojo/store/util/SimpleQueryEngine",
     "dojo/request"
-], (declare: Function, SimpleQueryEngine: Function, request: Function) => {
+], (declare: Dojo.declare, SimpleQueryEngine: Function, request: Dojo.request) => {
     class FlatEntityStore<T> implements IFlatEntityStore<T>{
         isTracking = false;
         conditionA = false;

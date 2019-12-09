@@ -1,3 +1,5 @@
+/// <reference path="../ts-adv-adoption.d.ts" />
+
 declare interface FlatEntity<T> {
   id: number;
   data: T;

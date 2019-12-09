@@ -108,5 +108,5 @@ declare namespace Dojo {
     then: (successHandler: Function, failureHandler?: Function) => Dojo.Deferred;
   }
 
-  type request = (url: string) => Dojo.Deferred;
+  type request = (url: string, options?: object) => Dojo.Deferred;
 }

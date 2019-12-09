@@ -1,3 +1,5 @@
+/// <reference path="./views.d.ts" />
+
 define([
   'models/ProfileCollectionViewModel',
   'dojo/_base/declare',

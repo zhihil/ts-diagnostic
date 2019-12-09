@@ -1,3 +1,5 @@
+/// <reference path="../ts-adv-adoption.d.ts" />
+
 type Gender = "M" | "F" | "X" | null;
 
 declare interface Verifiable {
