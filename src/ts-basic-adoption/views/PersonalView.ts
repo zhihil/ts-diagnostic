@@ -19,6 +19,7 @@ define([
     inherited: (args: IArguments) => any;    
     set: (prop: string, value: any) => void;
     get: (prop: string) => any;
+    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
     /* Model */
     model: IPersonalViewModel = null;

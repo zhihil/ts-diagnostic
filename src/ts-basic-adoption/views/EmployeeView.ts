@@ -12,8 +12,14 @@ define([
   _WidgetsInTemplateMixin: object, 
   template: string
 ) => {
-  class EmployeeView {
+  class EmployeeView implements IEmployeeView {
     readonly templateString = template;
+  
+    /* Mixin implementation methods */
+    set: (prop: string, value: any) => void;
+    get: (prop: string) => any;
+    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+    domNode: HTMLElement;
 
     /* Model */
     model: IEmployeeViewModel = null;

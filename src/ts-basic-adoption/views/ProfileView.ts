@@ -28,9 +28,10 @@ define([
     templateString = template;
 
     /* Mixin implementation methods */
-    inherited: (args: IArguments) => any;    
+    inherited: (args: IArguments) => any; 
     set: (prop: string, value: any) => void;
     get: (prop: string) => any;
+    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
     /* Model */
     readonly profileModels: IProfileCollectionViewModel = null;

@@ -15,8 +15,12 @@ define([
   template: string,
   Select: any
 ) => {
-  class ProfileSelect {
+  class ProfileSelect implements IProfileSelect {
     readonly templateString = template;
+
+    set: (prop: string, value: any) => void;
+    get: (prop: string) => any;
+    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
     /* Dojo attach points */
     readonly selectContainer: HTMLDivElement = null;

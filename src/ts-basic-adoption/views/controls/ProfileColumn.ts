@@ -13,8 +13,13 @@ define([
     _WidgetsInTemplateMixin: object, 
     template: string
 ) => {
-    class ProfileColumn {
+    class ProfileColumn implements IProfileColumn {
         readonly templateString = template;
+
+        /* Mixin implementation methods */  
+        set: (prop: string, value: any) => void;
+        get: (prop: string) => any;
+        watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
         /* IProfileViewModel */
         model: IProfileViewModel = null;

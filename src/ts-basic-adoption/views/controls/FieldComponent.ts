@@ -9,8 +9,13 @@ define([
   _TemplatedMixin: object, 
   template: string
 ) => {
-  class FieldComponent {
+  class FieldComponent implements IFieldComponent {
     readonly templateString = template;
+  
+    /* Mixin implementation methods */  
+    set: (prop: string, value: any) => void;
+    get: (prop: string) => any;
+    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
     /* Label name */
     readonly fieldLabel = "";
