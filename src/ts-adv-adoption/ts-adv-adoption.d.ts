@@ -17,14 +17,14 @@ declare namespace Dojo {
   }
 
   interface Stateful {
-    set: <K extends keyof this>(prop: string, value: this[K]) => void;
-    get: <K extends keyof this>(prop: string) => this[K];
-    watch: <K extends keyof this>(prop: string, handler: WatchHandler<this[K]>) => void;
+    set: <K extends keyof this>(prop: K, value: this[K]) => void;
+    get: <K extends keyof this>(prop: K) => this[K];
+    watch: <K extends keyof this>(prop: K, handler: WatchHandler<this[K]>) => void;
   }
 
   interface Class {
-    inherited: (arguments: any[]) => any;
-    getInherited: (arguments: any[]) => any;
+    inherited: (args: any) => any;
+    getInherited: (args: any) => any;
     isInstanceOf: (constructor: Class) => boolean;
   }
 
@@ -40,7 +40,9 @@ declare namespace Dojo {
     destroy: () => any;
   }
 
-  interface View extends Dojo.Class, Dojo._WidgetBase {}
+  interface _TemplatedMixin {}
+
+  interface _WidgetsInTemplateMixin {}
 
   interface Store<T> {
     data: T[];

@@ -15,10 +15,21 @@ define([
   class StudentView implements IStudentView {
     readonly templateString = template;
 
-    /* Mixin implementation methods */ 
-    set: (prop: string, value: any) => void;
-    get: (prop: string) => any;
-    watch: (prop: string, handler: Function) => void;
+    /* Needed to satisfy interface */
+
+    inherited: (args: any) => any;
+    getInherited: (args: any) => any;
+    isInstanceOf: (constructor: Dojo.Class) => boolean;
+    srcNodeRef: HTMLElement;
+    containerNode: Dojo._WidgetBase | HTMLElement;
+    postMixInProperties: () => void;
+    buildRendering: () => any;
+    postCreate: () => any;
+    startup: () => any;
+    destroy: () => any;
+    set: <K extends keyof this>(prop: K, value: this[K]) => void;
+    get: <K extends keyof this>(prop: K) => this[K];
+    watch: <K extends keyof this>(prop: K, handler: Dojo.WatchHandler<this[K]>) => void;
 
     /* Model */
     model: IStudentViewModel = null;
@@ -43,7 +54,7 @@ define([
     readonly fieldSIN: IFieldComponent = null;
     readonly friendsListNode: IFieldComponent = null;
     readonly coursesListNode: IFieldComponent = null;
-    readonly domNode: HTMLDivElement = null;
+    readonly domNode: Dojo._WidgetBase = null;
 
     _setModelAttr(value: IStudentViewModel) {
       this.model = value;
@@ -52,7 +63,7 @@ define([
 
     reactToModel() {
       this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
-      this.fieldAge.set('value', this.model.Age);
+      this.fieldAge.set('value', `${this.model.Age}`);
       this.fieldSchool.set('value', this.model.School);
       this.fieldGender.set('value', this.model.Gender);
       this.fieldPhoneNumber.set('value', this.model.PhoneNumberCell);

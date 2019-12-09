@@ -64,7 +64,7 @@ define([
         readonly getLocation: () => LocationMeta = null;
         readonly getBiography: () => Biography = null;
 
-        constructor(model: readonly<IProfileViewModel>) {
+        constructor(model: Readonly<IProfileViewModel>) {
             this.FirstName = model.FirstName;
             this.LastName = model.LastName;
             this.Age = model.Age;
@@ -111,7 +111,7 @@ define([
             this.propertyC5 = this.initializeObjectC();
         }
 
-        registerWatches(model: IProfileViewModel) {
+        registerWatches(model: Readonly<IProfileViewModel>) {
             /* Boilerplate to initialze handlers that keep derived model updated 
                 with original model
             */
@@ -316,14 +316,14 @@ define([
             }
         }
 
-        functionD1(obj: User, num: number) {
+        functionD1(obj: Readonly<User>, num: number) {
             if (obj.IsQuestionable) {
                 obj.Property.Data = num;
             }
             this.propertyA3 = obj;
         }
 
-        functionE1(obj: User, num: number) {
+        functionE1(obj: Readonly<User>, num: number) {
             const properties = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             for (const letter of properties) {
                 if (obj.IsQuestionable && obj.Property.Data < num) {
@@ -367,7 +367,7 @@ define([
             }
         }
 
-        functionD2(obj: User, num: number) {
+        functionD2(obj: Readonly<User>, num: number) {
             if (obj.IsQuestionable) {
                 obj.Property.Data = num;
             }

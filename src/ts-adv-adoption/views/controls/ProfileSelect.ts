@@ -15,8 +15,25 @@ define([
   template: string,
   Select: any
 ) => {
-  class ProfileSelect {
+  class ProfileSelect implements IProfileSelect {
     readonly templateString = template;
+
+    /* Needed to satisfy interface */
+    inherited: (args: any[]) => any;
+    getInherited: (args: any[]) => any;
+    isInstanceOf: (constructor: Dojo.Class) => boolean;
+    value: string;
+    domNode: Dojo._WidgetBase;
+    srcNodeRef: HTMLElement;
+    containerNode: Dojo._WidgetBase | HTMLElement;
+    postMixInProperties: () => void;
+    buildRendering: () => any;
+    postCreate: () => any;
+    startup: () => any;
+    destroy: () => any;
+    set: <K extends keyof this>(prop: K, value: this[K]) => void;
+    get: <K extends keyof this>(prop: K) => this[K];
+    watch: <K extends keyof this>(prop: K, handler: Dojo.WatchHandler<this[K]>) => void;
 
     /* Dojo attach points */
     readonly selectContainer: HTMLDivElement = null;

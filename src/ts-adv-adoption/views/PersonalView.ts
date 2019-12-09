@@ -15,10 +15,20 @@ define([
   class PersonalView implements IPersonalView {
     readonly templateString = template;
 
-    /* Mixin implementation methods */
-    inherited: (args: IArguments) => any;    
-    set: (prop: string, value: any) => void;
-    get: (prop: string) => any;
+    /* Needed to satisfy interface */
+    inherited: (args: any[]) => any;
+    getInherited: (args: any[]) => any;
+    isInstanceOf: (constructor: Dojo.Class) => boolean;
+    srcNodeRef: HTMLElement;
+    containerNode: Dojo._WidgetBase | HTMLElement;
+    postMixInProperties: () => void;
+    buildRendering: () => any;
+    postCreate: () => any;
+    startup: () => any;
+    destroy: () => any;
+    set: <K extends keyof this>(prop: K, value: this[K]) => void;
+    get: <K extends keyof this>(prop: K) => this[K];
+    watch: <K extends keyof this>(prop: K, handler: Dojo.WatchHandler<this[K]>) => void;
 
     /* Model */
     model: IPersonalViewModel = null;
@@ -38,7 +48,7 @@ define([
     readonly fieldPhoneNumber: IFieldComponent = null;
     readonly fieldStatus: IFieldComponent = null;
     readonly friendsListNode: IFieldComponent = null;
-    readonly domNode: HTMLDivElement = null;
+    readonly domNode: Dojo._WidgetBase = null;
 
     /* Watch handles */
     readonly handles: any[] = [];
@@ -53,7 +63,7 @@ define([
 
     reactToModel() {
         this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
-        this.fieldAge.set('value', this.model.Age);
+        this.fieldAge.set('value', `${this.model.Age}`);
         this.fieldSchool.set('value', this.model.School);
         this.fieldOccupation.set('value', this.model.Occupation);
         this.fieldCity.set('value', this.model.City);

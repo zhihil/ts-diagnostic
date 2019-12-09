@@ -16,7 +16,7 @@ define([
 
         readonly idProperty =  "id";
 
-        constructor(options?: IFlatEntityStoreCtorOptions<T>) { 
+        constructor(options?: Readonly<IFlatEntityStoreCtorOptions<T>>) { 
             if (!options) return;
 
             if (options.isTracking) {
@@ -41,7 +41,7 @@ define([
             return this.data[id];
         }
 
-        getIdentity(object: FlatEntity<T>) { 
+        getIdentity(object: Readonly<FlatEntity<T>>) { 
             const results = this.data.filter(item => item.id === object.id);
             if (results.length === 0) {
                 return null;
@@ -52,7 +52,7 @@ define([
             }
         }
 
-        put(obj: FlatEntity<T>): void { 
+        put(obj: Readonly<FlatEntity<T>>): void { 
             const results = this.getIdentity(obj);
             if (results !== null) {
                 const newEntity: FlatEntity<T> = {
@@ -64,7 +64,7 @@ define([
             }
         }
 
-        add(obj: FlatEntity<T>, options?: IFlatEntityStoreAddOptions<T>){ 
+        add(obj: Readonly<FlatEntity<T>>, options?: Readonly<IFlatEntityStoreAddOptions<T>>){ 
             const results = this.getIdentity(obj);
             if (results !== null) {
                 const newEntity: FlatEntity<T> = {
@@ -97,12 +97,12 @@ define([
             this.data = data;
         }
 
-        _setConditionA(options: IFlatEntityStoreCtorOptions<T>) {
+        _setConditionA(options?: Readonly<IFlatEntityStoreCtorOptions<T>>) {
             this.conditionA = options.conditionA && options.conditionB;
             return this.conditionA;
         }
 
-        _functionA(options: IFlatEntityStoreCtorOptions<T>) {
+        _functionA(options?: Readonly<IFlatEntityStoreCtorOptions<T>>) {
             request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000
@@ -116,7 +116,7 @@ define([
             )
         }
 
-        _functionB(options: IFlatEntityStoreCtorOptions<T>) {
+        _functionB(options?: Readonly<IFlatEntityStoreCtorOptions<T>>) {
             request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000
@@ -130,7 +130,7 @@ define([
             )
         }
 
-        _functionC(options: IFlatEntityStoreCtorOptions<T>) {
+        _functionC(options?: Readonly<IFlatEntityStoreCtorOptions<T>>) {
             request(this.dummyUrl, {
                 data: JSON.stringify(options.data),
                 timeout: 2000

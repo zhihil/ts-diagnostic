@@ -4,7 +4,9 @@ declare interface FlatEntity<T> {
   parent: number;
 }
 
-declare interface IFlatEntityStore<T> {}
+declare type IFlatEntityStoreAddOptions<T> = Partial<FlatEntity<T>>
+
+declare interface IFlatEntityStore<T> extends Dojo.Store<FlatEntity<T>> {}
 
 declare interface IFlatEntityStoreCtorOptions<T> {
   isTracking?: boolean;
@@ -12,12 +14,6 @@ declare interface IFlatEntityStoreCtorOptions<T> {
   conditionA?: boolean;
   conditionB?: boolean;
   data: T;
-}
-
-declare interface IFlatEntityStoreAddOptions<T> {
-  id?: number;
-  data?: T;
-  parent?: number; 
 }
 
 declare interface ConstructableFlatEntityStore<T> extends IFlatEntityStore<T> {

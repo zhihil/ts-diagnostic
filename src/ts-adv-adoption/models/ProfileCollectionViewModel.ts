@@ -13,15 +13,15 @@ define([
 ) => {
     class ProfileCollectionViewModel implements IProfileCollectionViewModel {
         /* Mixin implementation methods */  
-        set: (prop: string, value: any) => void;
-        get: (prop: string) => any;
-        watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+        set: <K extends keyof this>(prop: K, value: this[K]) => void;
+        get: <K extends keyof this>(prop: K) => this[K];
+        watch: <K extends keyof this>(prop: K, handler: WatchHandler<this[K]>) => void;
 
         readonly userProfiles: Record<string, IProfileViewModel> = null;
         selectedProfileId: string = null;
         readonly usersUrl: string = 'http://localhost:9001/users';
 
-        isFetching: false;
+        isFetching = false;
 
         constructor() { }
 

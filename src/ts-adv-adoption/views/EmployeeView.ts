@@ -12,8 +12,24 @@ define([
   _WidgetsInTemplateMixin: object, 
   template: string
 ) => {
-  class EmployeeView {
+  class EmployeeView implements IEmployeeView {
     readonly templateString = template;
+
+    /* Needed to satisfy interface */
+    inherited: (args: any[]) => any;
+    getInherited: (args: any[]) => any;
+    isInstanceOf: (constructor: Dojo.Class) => boolean;
+    domNode: Dojo._WidgetBase;
+    srcNodeRef: HTMLElement;
+    containerNode: Dojo._WidgetBase | HTMLElement;
+    postMixInProperties: () => void;
+    buildRendering: () => any;
+    postCreate: () => any;
+    startup: () => any;
+    destroy: () => any;
+    set: <K extends keyof this>(prop: K, value: this[K]) => void;
+    get: <K extends keyof this>(prop: K) => this[K];
+    watch: <K extends keyof this>(prop: K, handler: Dojo.WatchHandler<this[K]>) => void;
 
     /* Model */
     model: IEmployeeViewModel = null;
@@ -42,7 +58,7 @@ define([
 
     reactToModel() {
       this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
-      this.fieldAge.set('value', this.model.Age);
+      this.fieldAge.set('value', `${this.model.Age}`);
       this.fieldOccupation.set('value', this.model.Occupation);
       this.fieldWorkAddress.set('value', this.model.WorkAddress);
       this.fieldGender.set('value', this.model.Gender);

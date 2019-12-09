@@ -1,60 +1,34 @@
-/// <reference path="../global.d.ts" />
+/// <reference path="../ts-adv-adoption.d.ts" />
 
-declare interface IFieldComponent {
-  /* Mixin implementation methods */  
-  set: (prop: string, value: any) => void;
-  get: (prop: string) => any;
-  watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+interface View extends Dojo.Class, Dojo._WidgetBase, Dojo._WidgetsInTemplateMixin {}
+interface SimpleView extends Dojo.Class, Dojo._WidgetBase {}
 
+declare interface IFieldComponent extends SimpleView {
   value: string;
 }
 
-declare interface IProfileColumn {
-  /* Mixin implementation methods */  
-  set: (prop: string, value: any) => void;
-  get: (prop: string) => any;
-}
-
-declare interface IProfileSelect {
-  /* Mixin implementation methods */  
-  set: (prop: string, value: any) => void;
-
-  value: string;
-}
-
-declare interface IProfileView {
-  /* Mixin implementation methods */  
-  set: (prop: string, value: any) => void;
-  get: (prop: string) => any;
-
-  domNode: HTMLElement;
-}
-
-declare interface IEmployeeView {
-  /* Mixin implementation methods */  
-  set: (prop: string, value: any) => void;
-  get: (prop: string) => any;
-
-  domNode: HTMLElement;
-}
-
-declare interface IStudentView {
-  /* Mixin implementation methods */  
-  set: (prop: string, value: any) => void;
-  get: (prop: string) => any;
-
-  domNode: HTMLElement;
-}
-
-declare interface IPersonalView {
-  /* Mixin implementation methods */  
-  set: (prop: string, value: any) => void;
-  get: (prop: string) => any;
-
-  domNode: HTMLElement;
+declare interface IProfileColumn extends View {
+  model: IProfileViewModel
 }
 
 declare interface DojoSelectValue {
   value: any;
   label: string;
+}
+
+declare interface IProfileSelect extends View {
+  values: DojoSelectValue[];
+}
+
+declare interface IProfileView extends View {
+  model: IProfileViewModel;
+}
+declare interface IEmployeeView extends View {
+  model: IEmployeeViewModel
+}
+declare interface IStudentView extends View {
+  model: IStudentViewModel
+}
+declare interface IPersonalView extends View {
+  model: IPersonalViewModel
 }

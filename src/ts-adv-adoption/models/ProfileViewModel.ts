@@ -6,8 +6,8 @@ define([
     "models/StudentViewModel",
     "stores/FlatEntityStore"
 ], (
-    declare: Function, 
-    Stateful: object,
+    declare: Dojo.declare, 
+    Stateful: Dojo.Stateful,
     EmployeeViewModel: IConstructableEmployeeViewModel, 
     PersonalViewModel: IConstructablePersonalViewModel, 
     StudentViewModel: IConstructableStudentViewModel,
@@ -15,9 +15,9 @@ define([
 ) => {
     class ProfileViewModel implements IProfileViewModel {
         /* Mixin implementation methods */  
-        set: (prop: string, value: any) => void;
-        get: (prop: string) => any;
-        watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+        set: <K extends keyof this>(prop: K, value: this[K]) => void;
+        get: <K extends keyof this>(prop: K) => this[K];
+        watch: <K extends keyof this>(prop: K, handler: WatchHandler<this[K]>) => void;
 
         /* Account settings */
         ProfileId: number = null;
@@ -122,14 +122,14 @@ define([
                     'y', 'z'];
         firstNames = ["Andrew", "Thomas", "Morgan", "Alex", "Sarah", "Velma"];
         lastNames = ["Wellington", "Smith", "Thurston", "Armstrong", "Samson", "Goldberg"];
-        diffProperties: (keyof this)[] = [
+        diffProperties: string[] = [
             'ProfileId', 'AccountCreated', 'Verified', 'Confirmed', 'Premium',
             'FirstName', 'LastName', 'Age', 'School', 'Occupation', 'City', 'State', 'Country',
             'Address', 'WorkAddress', 'Gender', 'Birthday', 'Hometown', 'PhoneNumberCell',
             'PhoneNumberBusiness1', 'PhoneNumberBusiness2', 'Friends', 'Status', 'Courses', 'SIN'
         ];
 
-        constructor(model: IProfileModel /* ProfileModel */) {
+        constructor(model: Readonly<IProfileModel>) {
             /* Account settings */
             this.ProfileId = model.ProfileId;
             this.AccountCreated = model.AccountCreated;
@@ -223,9 +223,9 @@ define([
         }
 
         diff() {
-            const diffObj: { [index: string]: any } = {};
-            for (const prop of this.diffProperties) diffObj[prop as string] = this[prop];
-            return diffObj as DiffObject;
+            const diffObj: DiffObject = {};
+            for (const prop of this.diffProperties) diffObj[prop] = this[prop];
+            return diffObj;
         }
 
         getLocation(): LocationMeta {
@@ -423,14 +423,14 @@ define([
             }
         }
 
-        functionD1(obj: User, num: number) {
+        functionD1(obj: Readonly<User>, num: number) {
             if (obj.IsQuestionable) {
                 obj.Property.Data = num;
             }
             this.propertyA3 = obj;
         }
 
-        functionE1(obj: User, num: number) {
+        functionE1(obj: Readonly<User>, num: number) {
             const properties = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H'];
             for (const letter of properties) {
                 if (obj.IsQuestionable && obj.Property.Data < num) {
@@ -474,7 +474,7 @@ define([
             }
         }
 
-        functionD2(obj: User, num: number) {
+        functionD2(obj: Readonly<User>, num: number) {
             if (obj.IsQuestionable) {
                 obj.Property.Data = num;
             }

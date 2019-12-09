@@ -13,8 +13,24 @@ define([
     _WidgetsInTemplateMixin: object, 
     template: string
 ) => {
-    class ProfileColumn {
+    class ProfileColumn implements IProfileColumn {
         readonly templateString = template;
+
+        /* Needed to satisfy interface */
+        inherited: (args: any[]) => any;
+        getInherited: (args: any[]) => any;
+        isInstanceOf: (constructor: Dojo.Class) => boolean;
+        domNode: Dojo._WidgetBase;
+        srcNodeRef: HTMLElement;
+        containerNode: Dojo._WidgetBase | HTMLElement;
+        postMixInProperties: () => void;
+        buildRendering: () => any;
+        postCreate: () => any;
+        startup: () => any;
+        destroy: () => any;
+        set: <K extends keyof this>(prop: K, value: this[K]) => void;
+        get: <K extends keyof this>(prop: K) => this[K];
+        watch: <K extends keyof this>(prop: K, handler: Dojo.WatchHandler<this[K]>) => void;
 
         /* IProfileViewModel */
         model: IProfileViewModel = null;
@@ -50,7 +66,7 @@ define([
 
         reactToModel() {
             this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
-            this.fieldAge.set('value', this.model.Age);
+            this.fieldAge.set('value', `${this.model.Age}`);
             this.fieldSchool.set('value', this.model.School);
             this.fieldOccupation.set('value', this.model.Occupation);
             this.fieldCity.set('value', this.model.City);
