@@ -19,7 +19,8 @@
     "compile": "rm -rf ./frontend/static/*; tsc --diagnostics",
     "diagnostics": "./scripts/diagnostic.sh",
     "test-diagnostics": "./scripts/diagnostic.sh --debug",
-    "clear-logs": "rm ./logs/ts-diagnostic-trial-*-results.out"
+    "clear-logs": "rm ./logs/ts-diagnostic-trial-*-results.out",
+    "setup": "./scripts/setup.sh"
   },
   "repository": {
     "type": "git",

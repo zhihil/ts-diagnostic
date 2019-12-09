@@ -20,20 +20,18 @@
 ### 3 - Interfaces
 - [X] Interfaces
 - [X] Option bags (all properties all optional)
-- [ ] Readonly properties
-- [ ] ReadonlyArray - Used for tracking collection.
-- [ ] Indexable types
-- [ ] Function types as interfaces.
-- [ ] DOM Node typing for attach points. Widget typing.
+- [X] Readonly properties
+- [X] Indexable types
+- [X] Function types as interfaces.
 ### 4 - Classes
-- [ ] Supports ES6 class declaration syntax
 - [X] We take advantage of class declarations instead of defining Dojo objects.
-- [ ] Use extends by defining interfaces
-- [ ] Public, protected, private access modifiers
+- [X] Use extends by defining interfaces
+- [X] Public, protected, private access modifiers
 ### 5 - Functions
 - [X] Function types as arrow functions
 
 ## Advanced Typing To-do
+- [ ] DOM Node typing for attach points. Widget typing.
 - [ ] - Type Dojo imports and widgets
 - [ ] - Organize types into namespaces for clarity
     - [ ] - FlatEntityStore option bags into namespaces.
