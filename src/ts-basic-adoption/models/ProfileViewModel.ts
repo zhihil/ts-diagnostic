@@ -27,26 +27,26 @@ define([
         Premium = false;
 
         /* Personal details */
-        FirstName =  "";
-        LastName =  "";
-        Age: number = null;
-        School =  "";
-        Occupation =  "";
-        City =  "";
-        State =  "";
-        Country =  "";
-        Address =  "";
-        WorkAddress =  "";
-        Gender: Gender = null;
-        Birthday =  "";
-        Hometown =  "";
-        PhoneNumberCell =  "";
-        PhoneNumberBusiness1 =  "";
-        PhoneNumberBusiness2 =  "";
-        Friends: number[] =  [];
-        Status =  "";
-        Courses: string[] =  [];
-        SIN =  "";
+        readonly FirstName: string =  "";
+        readonly LastName: string =  "";
+        readonly Age: number = null;
+        readonly School: string =  "";
+        readonly Occupation: string =  "";
+        readonly City: string =  "";
+        readonly State: string =  "";
+        readonly Country: string =  "";
+        readonly Address: string =  "";
+        readonly WorkAddress: string =  "";
+        readonly Gender: Gender = null;
+        readonly Birthday: string =  "";
+        readonly Hometown: string =  "";
+        readonly PhoneNumberCell: string =  "";
+        readonly PhoneNumberBusiness1: string  =  "";
+        readonly PhoneNumberBusiness2: string  =  "";
+        readonly Friends: number[] = [];
+        readonly Status: string  =  "";
+        readonly Courses: string[] = [];
+        readonly SIN: string  =  "";
 
         /* Model state */
         isFetching = false;
