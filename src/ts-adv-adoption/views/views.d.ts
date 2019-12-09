@@ -1,4 +1,4 @@
-/// <reference path="../ts-basic-adoption.d.ts" />
+/// <reference path="../global.d.ts" />
 
 declare interface IFieldComponent {
   /* Mixin implementation methods */  
