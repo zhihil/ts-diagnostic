@@ -16,12 +16,9 @@ define([
     StudentViewModel: IConstructableStudentViewModel,
     FlatEntityStore: ConstructableFlatEntityStore<CommentMetadata>,
 ) => {
-    class ProfileViewModel implements IProfileViewModel {
-        /* Mixin implementation methods */  
-        set: <K extends keyof this>(prop: K, value: this[K]) => void;
-        get: <K extends keyof this>(prop: K) => this[K];
-        watch: <K extends keyof this>(prop: K, handler: WatchHandler<this[K]>) => void;
+    interface ProfileViewModel extends IProfileViewModel {}
 
+    class ProfileViewModel {
         /* Account settings */
         ProfileId: number = null;
         AccountCreated = "";

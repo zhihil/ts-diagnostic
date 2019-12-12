@@ -4,8 +4,14 @@ define([
     'dojo/_base/declare',
     'dojo/Stateful',
     'dojo/_base/lang'
-], (declare: Dojo.declare, Stateful: Dojo.Stateful, lang: Dojo.lang) => {
-    class StudentViewModel implements IStudentViewModel {
+], (
+    declare: Dojo.declare, 
+    Stateful: Dojo.Stateful, 
+    lang: Dojo.lang
+) => {
+    interface StudentViewModel extends IStudentViewModel {}
+
+    class StudentViewModel {
         /* Personal details */
         FirstName =  "";
         LastName =  "";

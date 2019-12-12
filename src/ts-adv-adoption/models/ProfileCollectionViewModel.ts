@@ -13,12 +13,9 @@ define([
     request: Dojo.request, 
     ProfileViewModel: IConstructableProfileViewModel
 ) => {
-    class ProfileCollectionViewModel implements IProfileCollectionViewModel {
-        /* Mixin implementation methods */  
-        set: <K extends keyof this>(prop: K, value: this[K]) => void;
-        get: <K extends keyof this>(prop: K) => this[K];
-        watch: <K extends keyof this>(prop: K, handler: WatchHandler<this[K]>) => void;
+    interface ProfileCollectionViewModel extends IProfileCollectionViewModel {}
 
+    class ProfileCollectionViewModel {
         readonly userProfiles: Record<string, IProfileViewModel> = null;
         selectedProfileId: string = null;
         readonly usersUrl: string = 'http://localhost:9001/users';

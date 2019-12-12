@@ -9,7 +9,9 @@ define([
     Stateful: Dojo.Stateful, 
     lang: Dojo.lang
 ) => {
-    class PersonalViewModel implements IPersonalViewModel {
+    interface PersonalViewModel extends IPersonalViewModel {}
+
+    class PersonalViewModel {
         /* Personal details */
         FirstName = "";
         LastName = "";

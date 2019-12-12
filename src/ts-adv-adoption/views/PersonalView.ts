@@ -14,23 +14,10 @@ define([
   _WidgetsInTemplateMixin: object,
   template: string
 ) => {
-  class PersonalView implements IPersonalView {
-    readonly templateString = template;
+  interface PersonalView extends IPersonalView {}
 
-    /* Needed to satisfy interface */
-    inherited: (args: any[]) => any;
-    getInherited: (args: any[]) => any;
-    isInstanceOf: (constructor: Dojo.Class) => boolean;
-    srcNodeRef: HTMLElement;
-    containerNode: Dojo._WidgetBase | HTMLElement;
-    postMixInProperties: () => void;
-    buildRendering: () => any;
-    postCreate: () => any;
-    startup: () => any;
-    destroy: () => any;
-    set: <K extends keyof this>(prop: K, value: this[K]) => void;
-    get: <K extends keyof this>(prop: K) => this[K];
-    watch: <K extends keyof this>(prop: K, handler: Dojo.WatchHandler<this[K]>) => void;
+  class PersonalView {
+    readonly templateString = template;
 
     /* Model */
     model: IPersonalViewModel = null;

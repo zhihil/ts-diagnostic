@@ -118,18 +118,18 @@ declare interface IProfileModel {
 declare type IEmployeeViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'Occupation' | 'WorkAddress' | 'Gender' | 
   'PhoneNumberCell' | 'PhoneNumberBusiness1' | 'PhoneNumberBusiness2' | 'SIN'
->;
+>  & Dojo.Stateful;
 
 declare type IStudentViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'School' | 'Gender' | 'PhoneNumberCell' |
   'Courses' | 'SIN'
->;
+>  & Dojo.Stateful;
 
 declare type IPersonalViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'School' | 'Occupation' | 'City' | 'State' |
   'Country' | 'Address' | 'Gender' | 'Birthday' | 'Hometown' | 'PhoneNumberCell' |
   'Friends' | 'Status'
->;
+> & Dojo.Stateful;
 
 declare interface IProfileViewModel extends IProfileModel, Dojo.Stateful {
   getLocation(): LocationMeta;

@@ -9,7 +9,9 @@ define([
     Stateful: Dojo.Stateful, 
     lang: Dojo.lang
 ) => {
-    class EmployeeViewModel implements IEmployeeViewModel {
+    interface EmployeeViewModel extends IEmployeeViewModel {}
+
+    class EmployeeViewModel {
         /* Personal details */
         FirstName = "";
         LastName = "";

@@ -11,24 +11,10 @@ define([
   _TemplatedMixin: Dojo._TemplatedMixin, 
   template: string
 ) => {
+  interface FieldComponent extends IFieldComponent {}
+
   class FieldComponent implements IFieldComponent {
     readonly templateString = template;
-
-    /* Needed to satisfy interface */
-    inherited: (args: any[]) => any;
-    getInherited: (args: any[]) => any;
-    isInstanceOf: (constructor: Dojo.Class) => boolean;
-    domNode: Dojo._WidgetBase;
-    srcNodeRef: HTMLElement;
-    containerNode: Dojo._WidgetBase | HTMLElement;
-    postMixInProperties: () => void;
-    buildRendering: () => any;
-    postCreate: () => any;
-    startup: () => any;
-    destroy: () => any;
-    set: <K extends keyof this>(prop: K, value: this[K]) => void;
-    get: <K extends keyof this>(prop: K) => this[K];
-    watch: <K extends keyof this>(prop: K, handler: Dojo.WatchHandler<this[K]>) => void;
 
     /* Label name */
     readonly fieldLabel = "";

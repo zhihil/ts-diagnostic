@@ -5,7 +5,9 @@ define([
     "dojo/store/util/SimpleQueryEngine",
     "dojo/request"
 ], (declare: Dojo.declare, SimpleQueryEngine: Function, request: Dojo.request) => {
-    class FlatEntityStore<T> implements IFlatEntityStore<T>{
+    interface FlatEntityStore<T> extends IFlatEntityStore<T> {}
+
+    class FlatEntityStore<T> { 
         isTracking = false;
         conditionA = false;
         conditionB = false;
