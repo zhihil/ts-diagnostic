@@ -1,35 +1,32 @@
-/// <reference path="../ts-adv-adoption.d.ts" />
-/// <reference path="../models/models.d.ts" />
+import _WidgetsInTemplateMixin from "dijit/_WidgetsInTemplateMixin";
+import _WidgetBase from "dijit/_WidgetBase";
+import { SelectValue } from "dijit/form/Select";
+import { IProfileViewModel, IEmployeeViewModel, IStudentViewModel, IPersonalViewModel } from "../models/models";
 
-interface View extends Dojo.Class, Dojo._WidgetBase, Dojo._WidgetsInTemplateMixin {}
-interface SimpleView extends Dojo.Class, Dojo._WidgetBase {}
+interface View extends DojoClass, _WidgetBase, _WidgetsInTemplateMixin {}
+interface SimpleView extends DojoClass, _WidgetBase {}
 
-declare interface IFieldComponent extends SimpleView {
+export interface IFieldComponent extends SimpleView {
   value: string;
 }
 
-declare interface IProfileColumn extends View {
+export interface IProfileColumn extends View {
   model: IProfileViewModel
 }
 
-declare interface DojoSelectValue {
-  value: any;
-  label: string;
+export interface IProfileSelect extends View {
+  values: SelectValue[];
 }
 
-declare interface IProfileSelect extends View {
-  values: DojoSelectValue[];
-}
-
-declare interface IProfileView extends View {
+export interface IProfileView extends View {
   model: IProfileViewModel;
 }
-declare interface IEmployeeView extends View {
+export interface IEmployeeView extends View {
   model: IEmployeeViewModel
 }
-declare interface IStudentView extends View {
+export interface IStudentView extends View {
   model: IStudentViewModel
 }
-declare interface IPersonalView extends View {
+export interface IPersonalView extends View {
   model: IPersonalViewModel
 }

@@ -1,62 +1,50 @@
-/// <reference path="../views.d.ts" />
+import dojo_declare from "dojo/_base/declare";
+import lang from "dojo/_base/lang";
+import _WidgetBase from "dijit/_WidgetBase";
+import _TemplatedMixin from "dijit/_TemplatedMixin";
+import _WidgetsInTemplateMixin from "dijit/_WidgetsInTemplateMixin";
+import template from 'dojo/text!templates/controls/ProfileSelectTemplate.html';
+import Select, { SelectValue } from "dijit/form/Select";
+import { IProfileSelect } from "../views";
 
-define([
-    'dojo/_base/declare',
-    'dojo/_base/lang',
-    'dijit/_WidgetBase',
-    'dijit/_TemplatedMixin',
-    'dijit/_WidgetsInTemplateMixin',
-    'dojo/text!templates/controls/ProfileSelectTemplate.html',
-    'dijit/form/Select',
-], (
-  declare: Function, 
-  lang: any, 
-  _WidgetBase: object, 
-  _TemplatedMixin: object, 
-  _WidgetsInTemplateMixin: object, 
-  template: string,
-  Select: Dojo.Select
-) => {
-  interface ProfileSelect extends IProfileSelect {}
+interface ProfileSelect extends IProfileSelect {}
+class ProfileSelect {
+  readonly templateString = template;
 
-  class ProfileSelect {
-    readonly templateString = template;
+  readonly BestProfessor = 'Dave Thompson';
 
-    readonly BestProfessor = 'Dave Thompson';
+  /* Dojo attach points */
+  readonly selectContainer: HTMLDivElement = null;
+  selectWidget: Select = null; 
 
-    /* Dojo attach points */
-    readonly selectContainer: HTMLDivElement = null;
-    selectWidget: typeof Select = null; 
+  /* Dojo props */
+  values: SelectValue[] = [];
+  readonly onChanged: (newVal: number) => void = () => {};
 
-    /* Dojo props */
-    values: DojoSelectValue[] = [];
-    readonly onChanged: (newVal: number) => void = () => {};
+  _setValuesAttr(newValues: SelectValue[]) {
+    this.values = newValues;
+    this._clearValueNodes();
 
-    _setValuesAttr(newValues: DojoSelectValue[]) {
-      this.values = newValues;
-      this._clearValueNodes();
+    this.selectWidget = new Select({
+      name: 'profile-select',
+      options: this.values,
+      onChange: lang.hitch(this, this._onChanged)
+    });
+    this.selectWidget.placeAt(this.selectContainer).startup();
+    console.log(this.BestProfessor);
+  }
 
-      this.selectWidget = new Select({
-        name: 'profile-select',
-        options: this.values,
-        onChange: lang.hitch(this, this._onChanged)
-      });
-      this.selectWidget.placeAt(this.selectContainer).startup();
-      console.log(this.BestProfessor);
-    }
-
-    _clearValueNodes() {
-      if (this.selectWidget) this.selectWidget.destroy();
-      const rootNode = this.selectContainer;
-      while (rootNode.firstChild) {
-        rootNode.removeChild(rootNode.firstChild);
-      }
-    }
-
-    _onChanged(newVal: number) {
-      this.onChanged(newVal);
+  _clearValueNodes() {
+    if (this.selectWidget) this.selectWidget.destroy();
+    const rootNode = this.selectContainer;
+    while (rootNode.firstChild) {
+      rootNode.removeChild(rootNode.firstChild);
     }
   }
 
-  return declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], ProfileSelect.prototype);
-});
+  _onChanged(newVal: number) {
+    this.onChanged(newVal);
+  }
+}
+
+export default dojo_declare([_WidgetBase, _TemplatedMixin, _WidgetsInTemplateMixin], ProfileSelect.prototype);

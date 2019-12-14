@@ -1,6 +1,7 @@
 /// <reference path="../ts-adv-adoption.d.ts" />
 
 import Stateful from "dojo/Stateful";
+import DojoClass from "types@-dojo-class";
 
 type Gender = "M" | "F" | "X" | null;
 
@@ -150,10 +151,12 @@ export interface ProfileCollection {
   [id: string]: IProfileViewModel 
 }
 
-export interface IProfileCollectionViewModel extends Stateful {
+export interface IProfileCollectionViewModel extends Stateful, DojoClass {
   userProfiles: ProfileCollection;
   selectedProfileId: string;
 
   getUsersData(): any;
   changeSelectedUser(targetId: number): void;
+
+  new(): IProfileCollectionViewModel;
 }
