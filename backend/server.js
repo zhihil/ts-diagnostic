@@ -45,6 +45,11 @@ app.get('/comments', (req, res) => {
     });
 });
 
+/* GET dummy data for the FlatEntityStore methods */
+app.get('/dummy', (_, res) => {
+    res.sendStatus(200);
+});
+
 app.listen(port, () => {
     console.log(`Backend server serving on port ${port}`)
 });

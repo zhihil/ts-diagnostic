@@ -80,13 +80,6 @@ define([
                     }
                     return true;
                 })
-                .map(item => lang.mixin(item, {
-                    FirstName: options.isAnonymous ? null : item.FirstName,
-                    LastName: options.isAnonymous ? null : item.ShortName,
-                    AddressLine1: options.NoTracking ? null : item.AddressLine1,
-                    AddressLine2: options.NoTracking ? null : item.AddressLine2,
-                    BusinessLine: options.NoTracking ? null : item.BusinessLine
-                }));
         },
         setData: function(data){
             this.data = data;
