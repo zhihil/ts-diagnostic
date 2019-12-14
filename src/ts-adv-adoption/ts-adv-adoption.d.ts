@@ -128,6 +128,10 @@ declare module "types@dojo/store" {
   }
 }
 
+declare module "dojo/parser" {
+  export function parse(): void; 
+}
+
 
 
 /* ----------------------------- Dijit ----------------------------- */

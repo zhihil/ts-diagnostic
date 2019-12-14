@@ -1,5 +1,3 @@
-/// <reference path="../ts-adv-adoption.d.ts" />
-
 import Stateful from "dojo/Stateful";
 import DojoClass from "types@-dojo-class";
 

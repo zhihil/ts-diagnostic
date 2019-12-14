@@ -3,8 +3,8 @@ import _WidgetBase from "dijit/_WidgetBase";
 import _TemplatedMixin from "dijit/_TemplatedMixin";
 import _WidgetsInTemplateMixin from "dijit/_WidgetsInTemplateMixin";
 import template from "dojo/text!templates/controls/ProfileColumnTemplate.html";
-import _ from "./FieldComponent";
-import __ from "dojo/domReady!";
+import "./FieldComponent";
+import "dojo/domReady!";
 import { IProfileColumn, IFieldComponent } from "../views";
 import { IProfileViewModel } from "../../models/models";
 

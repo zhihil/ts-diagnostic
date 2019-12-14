@@ -20,13 +20,17 @@ export interface IProfileSelect extends View {
 
 export interface IProfileView extends View {
   model: IProfileViewModel;
+  new(): IProfileView;
 }
 export interface IEmployeeView extends View {
   model: IEmployeeViewModel
+  new(): IEmployeeView;
 }
 export interface IStudentView extends View {
   model: IStudentViewModel
+  new(): IStudentView;
 }
 export interface IPersonalView extends View {
   model: IPersonalViewModel
+  new(): IPersonalView;
 }

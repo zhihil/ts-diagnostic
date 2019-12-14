@@ -1,5 +1,3 @@
-/// <reference path="../ts-adv-adoption.d.ts" />
-
 import { Store } from "types@dojo/store";
 
 export interface FlatEntity<T> {

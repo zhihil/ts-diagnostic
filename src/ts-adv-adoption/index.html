@@ -7,11 +7,11 @@
         <script src="dojo/dojo.js"></script>
         <script src="dijit/dijit.js"></script>
 
-        <div data-dojo-type="./views/ProfileView.js"></div>
+        <div id="container"></div>
 
         <script>
-            require(["dojo/parser", "dojo/domReady!"], parser => {
-                parser.parse();
+            require(['./main.js'], imp => {
+                imp.default();
             });
         </script>
     </body>

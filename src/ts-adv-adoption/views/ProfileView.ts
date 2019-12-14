@@ -1,5 +1,3 @@
-/// <reference path="./views.d.ts" />
-
 import ProfileCollectionViewModel from "../models/ProfileCollectionViewModel";
 import dojo_declare from "dojo/_base/declare";
 import lang from "dojo/_base/lang";
@@ -9,9 +7,12 @@ import _TemplatedMixin from "dijit/_TemplatedMixin";
 import _WidgetBase from "dijit/_WidgetBase";
 import _WidgetsInTemplateMixin from "dijit/_WidgetsInTemplateMixin";
 import template from "dojo/text!templates/ProfileViewTemplate.html";
-import _ from "./controls/ProfileColumn";
-import __ from "./controls/ProfileSelect";
+import "./controls/ProfileColumn";
+import "./controls/ProfileSelect";
 import Button from "dijit/form/Button";
+import "./StudentView";
+import "./PersonalView";
+import "./EmployeeView";
 import { IProfileViewModel, IProfileCollectionViewModel } from "../models/models";
 import { IProfileView, IPersonalView, IEmployeeView, IStudentView, IProfileColumn, IProfileSelect } from "./views";
 

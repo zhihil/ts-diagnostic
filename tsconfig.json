@@ -8,6 +8,6 @@
     "target": "ES3",
     "esModuleInterop": true
   },
-  "include": ["./src/ts-module/**/*.ts", "./src/ts-module/**/*.tsx"],
+  "include": ["./src/ts-adv-adoption/**/*.ts", "./src/ts-adv-adoption/**/*.tsx"],
   "exclude": ["node_modules"]
 }

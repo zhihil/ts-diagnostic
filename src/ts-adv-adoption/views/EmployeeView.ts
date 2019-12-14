@@ -1,11 +1,9 @@
-/// <reference path="./views.d.ts" />
-
 import dojo_declare from "dojo/_base/declare";
 import _WidgetBase from "dijit/_WidgetBase";
 import _TemplatedMixin from "dijit/_TemplatedMixin";
 import _WidgetsInTemplateMixin from "dijit/_WidgetsInTemplateMixin";
 import template from 'dojo/text!templates/EmployeeViewTemplate.html';
-import _ from "./controls/ProfileColumn";
+import "./controls/FieldComponent";
 import { IEmployeeView, IFieldComponent } from "./views";
 import { IEmployeeViewModel } from "../models/models";
 

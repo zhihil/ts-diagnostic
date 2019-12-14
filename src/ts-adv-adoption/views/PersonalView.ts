@@ -3,7 +3,7 @@ import _WidgetBase from "dijit/_WidgetBase";
 import _TemplatedMixin from "dijit/_TemplatedMixin";
 import _WidgetsInTemplateMixin from "dijit/_WidgetsInTemplateMixin";
 import template from 'dojo/text!templates/PersonalViewTemplate.html';
-import _ from "./controls/ProfileColumn";
+import "./controls/FieldComponent";
 import { IPersonalView, IFieldComponent } from "./views";
 import { IPersonalViewModel } from "../models/models";
 
