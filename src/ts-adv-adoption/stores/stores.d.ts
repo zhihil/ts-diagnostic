@@ -1,16 +1,20 @@
 /// <reference path="../ts-adv-adoption.d.ts" />
 
-declare interface FlatEntity<T> {
+import { Store } from "types@dojo/store";
+
+export interface FlatEntity<T> {
   id: number;
   data: T;
   parent: number;
 }
 
-declare type IFlatEntityStoreAddOptions<T> = Partial<FlatEntity<T>>
+export type IFlatEntityStoreAddOptions<T> = Partial<FlatEntity<T>>
 
-declare interface IFlatEntityStore<T> extends Dojo.Store<FlatEntity<T>> {}
+export interface IFlatEntityStore<T> extends Store<FlatEntity<T>> {
+  new(options?: Readonly<IFlatEntityStoreCtorOptions<T>>): IFlatEntityStore<T>;
+}
 
-declare interface IFlatEntityStoreCtorOptions<T> {
+export interface IFlatEntityStoreCtorOptions<T> {
   isTracking?: boolean;
   max?: number;
   conditionA?: boolean;
@@ -18,6 +22,6 @@ declare interface IFlatEntityStoreCtorOptions<T> {
   data: T;
 }
 
-declare interface ConstructableFlatEntityStore<T> extends IFlatEntityStore<T> {
+export interface ConstructableFlatEntityStore<T> extends IFlatEntityStore<T> {
   new(options?: IFlatEntityStoreCtorOptions<T>): IFlatEntityStore<T>
 }
