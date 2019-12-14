@@ -1,15 +1,17 @@
 /// <reference path="../ts-adv-adoption.d.ts" />
 
+import Stateful from "dojo/Stateful";
+
 type Gender = "M" | "F" | "X" | null;
 
-declare interface Verifiable {
+export interface Verifiable {
   Property: {
     Data: number;
   }
   IsQuestionable: boolean;
 }
 
-declare interface User extends Verifiable {
+export interface User extends Verifiable {
   Property: {
     Data: number;
     Name: string;
@@ -25,7 +27,7 @@ declare interface User extends Verifiable {
   DoSomething: () => number;
 }
 
-declare interface Profile {
+export interface Profile {
     FirstName: string;
     LastName: string;
     Id: number;
@@ -35,7 +37,7 @@ declare interface Profile {
     BusinessLIne: Address;
 }
 
-declare interface Address {
+export interface Address {
     City: string;
     Province: string;
     Country: string;
@@ -43,49 +45,45 @@ declare interface Address {
     Suite: number;
 }
 
-declare interface LocationMeta {
+export interface LocationMeta {
   city: string;
   state: string;
   country: string;
   address: string;
 }
 
-declare interface Contact {
+export interface Contact {
   phoneNumberCell: string;
   phoneNumberBusiness1: string;
   phoneNumberBusiness2: string;
 }
 
-declare interface Biography {
+export interface Biography {
   name: string;
   age: number;
   status: string;
 }
 
-declare interface ProfessionalBiography {
+export interface ProfessionalBiography {
   job: string;
   location: string;
   businessNumber1: string;
   businessNumber2: string;
 }
 
-declare interface EducationalBiography {
+export interface EducationalBiography {
   school: string;
   courses: string[];
 }
 
-declare interface CommentMetadata {
+export interface CommentMetadata {
   textContent: string;
   createdTimestamp: string;
   creatorId: number;
   targetUserId: number;
 }
 
-interface WatchHandler<T> {
-  (propName: string, oldVal: T, newVal: T): void;
-}
-
-declare interface IProfileModel {
+export interface IProfileModel {
   ProfileId: number;
   AccountCreated: string;
   Verified: boolean;
@@ -113,23 +111,28 @@ declare interface IProfileModel {
   SIN: string;
 }
 
-declare type IEmployeeViewModel = Pick<IProfileViewModel,
+interface DerivedConstructable<K> {
+  new(model: K): this;
+}
+
+export type IEmployeeViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'Occupation' | 'WorkAddress' | 'Gender' | 
   'PhoneNumberCell' | 'PhoneNumberBusiness1' | 'PhoneNumberBusiness2' | 'SIN'
-> & Dojo.Stateful;
+> & Stateful & DerivedConstructable<IProfileViewModel>;
 
-declare type IStudentViewModel = Pick<IProfileViewModel,
+export type IStudentViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'School' | 'Gender' | 'PhoneNumberCell' |
   'Courses' | 'SIN'
-> & Dojo.Stateful;
+> & Stateful & DerivedConstructable<IProfileViewModel>;
 
-declare type IPersonalViewModel = Pick<IProfileViewModel,
+export type IPersonalViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'School' | 'Occupation' | 'City' | 'State' |
   'Country' | 'Address' | 'Gender' | 'Birthday' | 'Hometown' | 'PhoneNumberCell' |
-  'Friends' | 'Status'
-> & Dojo.Stateful;
+  'Friends' | 'Status' 
+> & Stateful & DerivedConstructable<IProfileViewModel>;
 
-declare interface IProfileViewModel extends IProfileModel, Dojo.Stateful {
+
+export interface IProfileViewModel extends IProfileModel, Stateful {
   getLocation(): LocationMeta;
   getContactInfo(): Contact;
   getBiography(): Biography;
@@ -139,49 +142,18 @@ declare interface IProfileViewModel extends IProfileModel, Dojo.Stateful {
   personalViewModel: IPersonalViewModel;
   employeeViewModel: IEmployeeViewModel;
   studentViewModel: IStudentViewModel;
+
+  new(model: Readonly<IProfileModel>): IProfileViewModel;
 }
 
-declare interface ProfileCollection {
+export interface ProfileCollection {
   [id: string]: IProfileViewModel 
 }
 
-declare interface IProfileCollectionViewModel extends Dojo.Stateful {
+export interface IProfileCollectionViewModel extends Stateful {
   userProfiles: ProfileCollection;
   selectedProfileId: string;
 
   getUsersData(): any;
   changeSelectedUser(targetId: number): void;
-}
-
-/* These are necessary because Dojo's imports don't take advantage of the fact
-    that in TypeScript, class declarations create both a value, the class's 
-    constructor function, and a type, the class's actual type.
-
-    This project opted to use declaration files to overcome this issue, however,
-    it is not possible to simply embed the constructor's type signature into an
-    interface. Some additional legwork is needed when a class constructor is
-    required.  
-*/
-declare interface DerivedConstructable<T,K> {
-  new(model: K): T;
-}
-
-declare interface IConstructablePersonalViewModel extends 
-  IPersonalViewModel, 
-  DerivedConstructable<IPersonalViewModel, IProfileViewModel> {}
-
-declare interface IConstructableEmployeeViewModel extends 
-  IEmployeeViewModel, 
-  DerivedConstructable<IEmployeeViewModel, IProfileViewModel> {}
-
-declare interface IConstructableStudentViewModel extends 
-  IStudentViewModel, 
-  DerivedConstructable<IStudentViewModel, IProfileViewModel> {}
-
-declare interface IConstructableProfileViewModel extends 
-  IProfileViewModel, 
-  DerivedConstructable<IProfileViewModel, IProfileModel> {}
-
-declare interface IConstructableProfileCollectionViewModel {
-  new(): IProfileCollectionViewModel
 }
