@@ -1,3 +1,5 @@
+/// <reference path="../views.d.ts" />
+
 define([
     'dojo/_base/declare',
     'dojo/_base/lang',
@@ -13,14 +15,14 @@ define([
   _TemplatedMixin: object, 
   _WidgetsInTemplateMixin: object, 
   template: string,
-  Select: any
+  Select: Dojo.Select
 ) => {
-  class ProfileSelect implements IProfileSelect {
+  interface ProfileSelect extends IProfileSelect {}
+
+  class ProfileSelect {
     readonly templateString = template;
 
-    set: (prop: string, value: any) => void;
-    get: (prop: string) => any;
-    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+    readonly BestProfessor = 'Dave Thompson';
 
     /* Dojo attach points */
     readonly selectContainer: HTMLDivElement = null;
@@ -40,6 +42,7 @@ define([
         onChange: lang.hitch(this, this._onChanged)
       });
       this.selectWidget.placeAt(this.selectContainer).startup();
+      console.log(this.BestProfessor);
     }
 
     _clearValueNodes() {

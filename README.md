@@ -31,6 +31,10 @@
 - [X] Function types as arrow functions
 
 ## Advanced Typing To-do
+- [ ] - Mixin typing
+- [ ] - Namespaces, modules, declaration files
+- [ ] - Advanced types, utility types, and type manipulation.
+
 - [ ] DOM Node typing for attach points. Widget typing.
 - [ ] - Type Dojo imports and widgets
 - [ ] - Organize types into namespaces for clarity

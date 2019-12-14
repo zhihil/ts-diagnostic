@@ -1,3 +1,5 @@
+/// <reference path="./views.d.ts" />
+
 define([
   'models/ProfileCollectionViewModel',
   'dojo/_base/declare',
@@ -24,14 +26,10 @@ define([
 ) => {
   type viewType = 'personal' | 'employee' | 'student' | null;
 
-  class ProfileView implements IProfileView {
-    templateString = template;
+  interface ProfileView extends IProfileView {}
 
-    /* Mixin implementation methods */
-    inherited: (args: IArguments) => any; 
-    set: (prop: string, value: any) => void;
-    get: (prop: string) => any;
-    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+  class ProfileView {
+    templateString = template;
 
     /* Model */
     readonly profileModels: IProfileCollectionViewModel = null;
@@ -43,7 +41,7 @@ define([
     readonly studentView: IStudentView = null;
     readonly profileColumn: IProfileColumn = null;
     readonly profileSelect: IProfileSelect = null;
-    readonly domNode: HTMLDivElement = null;
+    readonly domNode: Dojo._WidgetBase = null;
     readonly showPersonalBtn: any = null;
     readonly showEmployeeBtn: any = null;
     readonly showStudentBtn: any = null;
@@ -82,7 +80,7 @@ define([
     }
 
     startup() {
-      this.inherited(arguments);
+      this.inherited(arguments as any)
 
       domStyle.set(this.personalView.domNode, 'display', 'none');
       domStyle.set(this.employeeView.domNode, 'display', 'none');

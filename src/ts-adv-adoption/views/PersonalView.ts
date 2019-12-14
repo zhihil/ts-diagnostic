@@ -1,3 +1,5 @@
+/// <reference path="./views.d.ts" />
+
 define([
   'dojo/_base/declare',
   'dijit/_WidgetBase',
@@ -12,14 +14,10 @@ define([
   _WidgetsInTemplateMixin: object,
   template: string
 ) => {
-  class PersonalView implements IPersonalView {
-    readonly templateString = template;
+  interface PersonalView extends IPersonalView {}
 
-    /* Mixin implementation methods */
-    inherited: (args: IArguments) => any;    
-    set: (prop: string, value: any) => void;
-    get: (prop: string) => any;
-    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+  class PersonalView {
+    readonly templateString = template;
 
     /* Model */
     model: IPersonalViewModel = null;
@@ -39,7 +37,7 @@ define([
     readonly fieldPhoneNumber: IFieldComponent = null;
     readonly fieldStatus: IFieldComponent = null;
     readonly friendsListNode: IFieldComponent = null;
-    readonly domNode: HTMLDivElement = null;
+    readonly domNode: Dojo._WidgetBase = null;
 
     /* Watch handles */
     readonly handles: any[] = [];
@@ -54,7 +52,7 @@ define([
 
     reactToModel() {
         this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
-        this.fieldAge.set('value', this.model.Age);
+        this.fieldAge.set('value', `${this.model.Age}`);
         this.fieldSchool.set('value', this.model.School);
         this.fieldOccupation.set('value', this.model.Occupation);
         this.fieldCity.set('value', this.model.City);

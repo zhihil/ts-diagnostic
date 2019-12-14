@@ -1,21 +1,20 @@
+/// <reference path="../views.d.ts" />
+
 define([
   'dojo/_base/declare',
   'dijit/_WidgetBase',
   'dijit/_TemplatedMixin',
   'dojo/text!templates/controls/FieldComponentTemplate.html'
 ], (
-  declare: Function, 
-  _WidgetBase: object, 
-  _TemplatedMixin: object, 
+  declare: Dojo.declare, 
+  _WidgetBase: Dojo._WidgetBase, 
+  _TemplatedMixin: Dojo._TemplatedMixin, 
   template: string
 ) => {
+  interface FieldComponent extends IFieldComponent {}
+
   class FieldComponent implements IFieldComponent {
     readonly templateString = template;
-  
-    /* Mixin implementation methods */  
-    set: (prop: string, value: any) => void;
-    get: (prop: string) => any;
-    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
 
     /* Label name */
     readonly fieldLabel = "";

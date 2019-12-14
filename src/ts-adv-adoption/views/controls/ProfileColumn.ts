@@ -1,3 +1,5 @@
+/// <reference path="../views.d.ts" />
+
 define([
     "dojo/_base/declare",
     "dijit/_WidgetBase",
@@ -13,13 +15,10 @@ define([
     _WidgetsInTemplateMixin: object, 
     template: string
 ) => {
-    class ProfileColumn implements IProfileColumn {
-        readonly templateString = template;
+    interface ProfileColumn extends IProfileColumn {}
 
-        /* Mixin implementation methods */  
-        set: (prop: string, value: any) => void;
-        get: (prop: string) => any;
-        watch: <T>(prop: string, handler: WatchHandler<T>) => void;
+    class ProfileColumn {
+        readonly templateString = template;
 
         /* IProfileViewModel */
         model: IProfileViewModel = null;
@@ -55,7 +54,7 @@ define([
 
         reactToModel() {
             this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
-            this.fieldAge.set('value', this.model.Age);
+            this.fieldAge.set('value', `${this.model.Age}`);
             this.fieldSchool.set('value', this.model.School);
             this.fieldOccupation.set('value', this.model.Occupation);
             this.fieldCity.set('value', this.model.City);

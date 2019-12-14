@@ -1,3 +1,5 @@
+/// <reference path="./views.d.ts" />
+
 define([
   'dojo/_base/declare',
   'dijit/_WidgetBase',
@@ -12,15 +14,11 @@ define([
   _WidgetsInTemplateMixin: object, 
   template: string
 ) => {
-  class EmployeeView implements IEmployeeView {
+  interface EmployeeView extends IEmployeeView {}
+
+  class EmployeeView {
     readonly templateString = template;
   
-    /* Mixin implementation methods */
-    set: (prop: string, value: any) => void;
-    get: (prop: string) => any;
-    watch: <T>(prop: string, handler: WatchHandler<T>) => void;
-    domNode: HTMLElement;
-
     /* Model */
     model: IEmployeeViewModel = null;
 
@@ -48,7 +46,7 @@ define([
 
     reactToModel() {
       this.fieldName.set('value', `${this.model.FirstName} ${this.model.LastName}`);
-      this.fieldAge.set('value', this.model.Age);
+      this.fieldAge.set('value', `${this.model.Age}`);
       this.fieldOccupation.set('value', this.model.Occupation);
       this.fieldWorkAddress.set('value', this.model.WorkAddress);
       this.fieldGender.set('value', this.model.Gender);
