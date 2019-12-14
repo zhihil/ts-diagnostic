@@ -22,7 +22,8 @@ outDir=`egrep "('|\")outDir('|\"):" tsconfig.json | cut -d ':' -f 2 | sed 's/,//
 echo "Found tsc --outDir: $outDir"
 
 totalTime=0
-for i in 0 1 2 3 4 5 6 7 8 9
+trials=30
+for i in {1..30}
 do
     trialTime=0
     if [ $# -eq 1 ] && [ $1 = '--debug' ] 
@@ -38,7 +39,7 @@ do
     rm -r $outDir;
 done
 
-avgTime=$(echo "scale=3; $totalTime / 10" | bc)
+avgTime=$(echo "scale=3; $totalTime / $trials" | bc)
 echo "Average compile time: $avgTime"
 
 currentTimestamp=`date +"%Y-%m-%d-%H:%M:%S"`;

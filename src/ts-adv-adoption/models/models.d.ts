@@ -81,8 +81,6 @@ declare interface CommentMetadata {
   targetUserId: number;
 }
 
-declare type DiffObject = Partial<IProfileModel>;
-
 interface WatchHandler<T> {
   (propName: string, oldVal: T, newVal: T): void;
 }
@@ -118,12 +116,12 @@ declare interface IProfileModel {
 declare type IEmployeeViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'Occupation' | 'WorkAddress' | 'Gender' | 
   'PhoneNumberCell' | 'PhoneNumberBusiness1' | 'PhoneNumberBusiness2' | 'SIN'
->  & Dojo.Stateful;
+> & Dojo.Stateful;
 
 declare type IStudentViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'School' | 'Gender' | 'PhoneNumberCell' |
   'Courses' | 'SIN'
->  & Dojo.Stateful;
+> & Dojo.Stateful;
 
 declare type IPersonalViewModel = Pick<IProfileViewModel,
   'FirstName' | 'LastName' | 'Age' | 'School' | 'Occupation' | 'City' | 'State' |

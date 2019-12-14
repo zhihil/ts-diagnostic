@@ -223,8 +223,10 @@ define([
         }
 
         diff() {
-            const diffObj: DiffObject = {};
-            for (const prop of this.diffProperties) diffObj[prop] = this[prop];
+            const diffObj: any = {};
+            /* Intentional any violation because of the difficulty of pinning this pattern down */
+            const self: any = this;
+            for (const prop of this.diffProperties) diffObj[prop] = self[prop];
             return diffObj;
         }
 

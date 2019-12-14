@@ -15,14 +15,14 @@ define([
   _TemplatedMixin: object, 
   _WidgetsInTemplateMixin: object, 
   template: string,
-  Select: any
+  Select: Dojo.Select
 ) => {
   interface ProfileSelect extends IProfileSelect {}
 
   class ProfileSelect {
     readonly templateString = template;
 
-    readonly DaveThompson = "I love coke zero";
+    readonly BestProfessor = 'Dave Thompson';
 
     /* Dojo attach points */
     readonly selectContainer: HTMLDivElement = null;
@@ -42,6 +42,7 @@ define([
         onChange: lang.hitch(this, this._onChanged)
       });
       this.selectWidget.placeAt(this.selectContainer).startup();
+      console.log(this.BestProfessor);
     }
 
     _clearValueNodes() {

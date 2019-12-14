@@ -9,6 +9,10 @@ declare namespace Dojo {
     value: any;
     label: string;
   }
+
+  interface Select extends _WidgetBase {
+    new(options: object): Select;
+  }
   
   type WatchHandler<T> = (propName: string, oldValue: T, newValue: T) => void;
 
@@ -38,6 +42,9 @@ declare namespace Dojo {
     postCreate: () => any;
     startup: () => any;
     destroy: () => any;
+    placeAt: (element: HTMLElement) => _WidgetBase;
+
+    new(options: object): _WidgetBase;
   }
 
   interface _TemplatedMixin {}
