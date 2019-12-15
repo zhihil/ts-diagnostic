@@ -1,0 +1,35 @@
+Test was run at: 2019-12-15-14:50:24
+The input folder specifications in tsconfig.json was: [  "include": ["./src/ts-adv-adoption/**/*.ts", "./src/ts-adv-adoption/**/*.tsx"],]
+Average time: 1.359000s
+Variance: .000174s
+--- Raw data ---
+Trial 0: 1.38s
+Trial 1: 1.36s
+Trial 2: 1.35s
+Trial 3: 1.35s
+Trial 4: 1.38s
+Trial 5: 1.36s
+Trial 6: 1.39s
+Trial 7: 1.34s
+Trial 8: 1.37s
+Trial 9: 1.36s
+Trial 10: 1.37s
+Trial 11: 1.35s
+Trial 12: 1.36s
+Trial 13: 1.35s
+Trial 14: 1.34s
+Trial 15: 1.38s
+Trial 16: 1.35s
+Trial 17: 1.36s
+Trial 18: 1.36s
+Trial 19: 1.35s
+Trial 20: 1.36s
+Trial 21: 1.36s
+Trial 22: 1.34s
+Trial 23: 1.35s
+Trial 24: 1.36s
+Trial 25: 1.36s
+Trial 26: 1.36s
+Trial 27: 1.34s
+Trial 28: 1.35s
+Trial 29: 1.38s

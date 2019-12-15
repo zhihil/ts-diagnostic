@@ -16,12 +16,18 @@
             finishes.
 '
 
+# Warning if the script is running debug mode
 echo "NOTE: Running in debug mode, check the logs/ folder for the debug output\n"
 
+# Determine the output directory for emitted .js files specified by the tsconfig.json
 outDir=`egrep "('|\")outDir('|\"):" tsconfig.json | cut -d ':' -f 2 | sed 's/,//g' | sed 's/"//g' | sed "s/'//g"`
 echo "Found tsc --outDir: $outDir"
 
+# Run the build script "npm run compile" up to the number of times specified by $trials.
+#   Accumulate a $totalTime value to compute the mean and a $results array to compute
+#   the variance.
 totalTime=0
+declare -a results
 trials=30
 for i in {1..30}
 do
@@ -34,14 +40,26 @@ do
       trialTime=`npm run compile | egrep "Total time:" | egrep -o "[0-9]+.[0-9]+"`
     fi
 
-    totalTime=$(echo "scale=3; $totalTime + $trialTime" | bc)
-    echo "Total compile time for trial $i: $totalTime"
+    results+=($trialTime)
+    totalTime=$(echo "scale=6; $totalTime + $trialTime" | bc)
     rm -r $outDir;
 done
 
-avgTime=$(echo "scale=3; $totalTime / $trials" | bc)
+# Compute the average
+avgTime=$(echo "scale=6; $totalTime / $trials" | bc)
 echo "Average compile time: $avgTime"
 
+# Compute the variance using the 30 trial data as a sample of the overall population.
+var=0
+for i in ${!results[@]}
+do
+  echo "results[$i] =  ${results[i]}"
+  var=$(echo "scale=6; $var + (${results[i]} - $avgTime) * (${results[i]} - $avgTime)" | bc)
+done
+var=$(echo "scale=6; $var / ($trials - 1)" | bc)
+echo "Variance: $var";
+
+# Output to the /log folder, the results of this diagnostic
 currentTimestamp=`date +"%Y-%m-%d-%H:%M:%S"`;
 outputFile="./logs/ts-diagnostic-results-${currentTimestamp}.out"
 touch $outputFile
@@ -49,3 +67,10 @@ originFolder=`egrep "('|\")include('|\"):" tsconfig.json`
 echo "Test was run at: $currentTimestamp" >> $outputFile
 echo "The input folder specifications in tsconfig.json was: [$originFolder]" >> $outputFile
 echo "Average time: ${avgTime}s" >> $outputFile
+echo "Variance: ${var}s" >> $outputFile
+echo "--- Raw data ---" >> $outputFile
+for i in ${!results[@]} 
+do
+  echo "Trial $i: ${results[i]}s" >> $outputFile
+done
+
