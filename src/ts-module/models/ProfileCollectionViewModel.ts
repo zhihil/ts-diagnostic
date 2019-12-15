@@ -48,15 +48,18 @@ define([
 
         changeSelectedUser(targetId) {
             const recordIds = Object.keys(this.userProfiles);
-            const filteredRecords = recordIds.filter(id => this.userProfiles[id].ProfileId === targetId);
+            let selectedId = null;
 
-            if (filteredRecords.length === 0) {
+            recordIds.forEach((id, index) => {
+                if (this.userProfiles[id].ProfileId === targetId) {
+                    selectedId = index;
+                }
+            });
+
+            if (selectedId === null) {
                 throw Error("Attempted to change to a non-existent user");
-            } else if (filteredRecords.length > 1) {
-                throw Error("Unknown error - malformed data has duplicate users")
             }
 
-            const selectedId = filteredRecords[0];
             this.set('selectedProfileId', recordIds[selectedId]);
         }
     });
