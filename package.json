@@ -9,7 +9,7 @@
     "dojox": "^1.16.0",
     "dijit": "^1.16.0",
     "express": "^4.17.1",
-    "dojo": "^1.16.0",
+    "dojo": "^1.16.2",
     "typescript": "^3.3.1"
   },
   "devDependencies": {},
