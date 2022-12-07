@@ -4,11 +4,11 @@
   "description": "- [X] Implement dropdown to switch between Personal, Employee, and Student views - [X] Implement dropdown to switch between different users. - [ ] Implement a comments view to display comments associated with the user.",
   "main": "index.js",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.1",
     "cors": "^2.8.5",
     "dojox": "^1.16.0",
     "dijit": "^1.16.0",
-    "express": "^4.17.1",
+    "express": "^4.18.2",
     "dojo": "^1.16.0",
     "typescript": "^3.3.1"
   },
